@@ -7,6 +7,10 @@ require("@rails/ujs").start()
 require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
+import jQuery from 'jquery'
+
+window.$ = jQuery
+window.jQuery = jQuery
 
 // ------------------
 //     CSS
@@ -26,7 +30,17 @@ const imagePath = (name) => images(name, true)
 import 'bootstrap'
 
 // TEMPLATE JS
-// ...
+require("packs/jquery-ui.min")
+require("packs/jquery.countdown.min")
+require("packs/jquery.nice-select.min")
+require("packs/jquery.zoom.min")
+require("packs/jquery.dd")
+require("packs/jquery.slicknav")
+require("packs/owl.carousel.min")
 
+
+document.addEventListener("DOMContentLoaded", function(){
+
+});
 // APPLICATION JS
 require("packs/custom")

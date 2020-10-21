@@ -119,7 +119,7 @@
         autoHeight: false,
         autoplay: true,
     });
-    
+
     /*------------------
         CountDown
     --------------------*/
@@ -140,7 +140,7 @@
     // For demo preview end
 
     console.log(timerdate);
-    
+
 
     // Use this for real timer date
     /* var timerdate = "2020/01/01"; */
@@ -149,9 +149,9 @@
         $(this).html(event.strftime("<div class='cd-item'><span>%D</span> <p>Days</p> </div>" + "<div class='cd-item'><span>%H</span> <p>Hrs</p> </div>" + "<div class='cd-item'><span>%M</span> <p>Mins</p> </div>" + "<div class='cd-item'><span>%S</span> <p>Secs</p> </div>"));
     });
 
-        
+
     /*----------------------------------------------------
-     Language Flag js 
+     Language Flag js
     ----------------------------------------------------*/
     $(document).ready(function(e) {
     //no use
@@ -169,7 +169,7 @@
     } catch(e) {
         // console.log(e);
     }
-    $("#ver").html(msBeautify.version.msDropdown);
+    // $("#ver").html(msBeautify.version.msDropdown);
 
     //convert
     $(".language_drop").msDropdown({roundedBorder:false});
@@ -203,7 +203,7 @@
         $(".fw-size-choose .sc-item label, .pd-size-choose .sc-item label").removeClass('active');
         $(this).addClass('active');
     });
-    
+
     /*-------------------
 		Nice Select
     --------------------- */
@@ -224,7 +224,7 @@
 	});
 
     $('.product-pic-zoom').zoom();
-    
+
     /*-------------------
 		Quantity change
 	--------------------- */
