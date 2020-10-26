@@ -5,3 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+# %w(zapatillas zapatos sandalias polo poleras shorts pantalones).each { |type|
+#   Type.create(name: 'Luke')
+# }
