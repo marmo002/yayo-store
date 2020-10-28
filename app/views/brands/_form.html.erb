@@ -1,0 +1,32 @@
+<%= form_with(model: brand, local: true) do |form| %>
+  <%#= render "shared/errors", object: brand %>
+  <% if brand.errors.any? %>
+    <div id="error_explanation">
+      <h5><%= pluralize(brand.errors.count, "error") %> prohibited this brand from being saved:</h5>
+
+      <ul style="color:red">
+        <% brand.errors.messages.values.flatten.each do |message| %>
+        <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+<hr>
+  <%= form.label :name %>
+  <%= form.text_field :name %>
+  <hr>
+  <% if brand.persisted? && brand.logo.attached? %>
+  <div>
+    <%= image_tag brand.logo, width: "150" %>
+  </div>
+  <hr>
+  <% end %>
+  <%#= form.label :logo %>
+  <%= form.file_field :logo %>
+  <br>
+  <small>Logo no puede ser mayor a 5Mbs!</small>
+  <hr>
+
+  <%= form.submit %>
+
+<% end %>
