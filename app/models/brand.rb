@@ -4,6 +4,8 @@ class Brand < ApplicationRecord
 
   has_one_attached :logo
 
+  default_scope { order(name: :asc) }
+
   # CUSTOM VALIDATION
   validate :image_validation
 
@@ -14,6 +16,7 @@ class Brand < ApplicationRecord
   private
 
     def image_validation
+      return unless self.logo.attached?
         if !logo.blob.image?
           errors.add :logo, 'Archivo no es una imagen!'
         elsif logo.blob.image? && logo.blob.byte_size > (3 * 1024 * 1024) # Limit size 5MB

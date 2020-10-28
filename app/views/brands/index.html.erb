@@ -3,7 +3,7 @@
   <% @brands.each do |brand| %>
     <ul>
       <li>
-        <%= brand.name %>
+        <%= brand.name %> - id: <%= brand.id %>
       </li>
       <li><%= image_tag(brand.logo, width: "150", height: "auto") if brand.logo.attached? %></li>
       <li><%= link_to "Editar", edit_brand_path(brand), data: { turbolinks: false } %></li>
