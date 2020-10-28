@@ -3,6 +3,11 @@ Rails.application.routes.draw do
 
   root "pages#home"
 
-  get "/pages/home" => "pages#home"
+  get "/pages/home", to: "pages#home"
+
+
+  scope '/admin' do
+    resources :brands, only: [:index, :show, :new, :edit, :create, :update]
+  end
 
 end
