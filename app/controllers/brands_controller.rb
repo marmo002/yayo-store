@@ -1,6 +1,6 @@
 class BrandsController < ApplicationController
   layout "admin_layout"
-  before_action :get_brand, only: [:edit, :update]
+  before_action :get_brand, only: [:edit, :update, :destroy]
 
 
   def index
@@ -20,7 +20,10 @@ class BrandsController < ApplicationController
 
     respond_to do |format|
       if @brand.save
-        format.html { redirect_to brands_path, notice: 'Product was successfully created.' }
+        format.html {
+          flash[:success] = "Marca #{@brand.name} se creo existosamente"
+          redirect_to brands_path
+        }
         format.json { render :show, status: :created, location: @brand }
       else
         format.html { render :new }
@@ -33,12 +36,34 @@ class BrandsController < ApplicationController
 
     respond_to do |format|
       if @brand.update(brand_params)
-        format.html { redirect_to brands_path, notice: 'Se actualizo correctamente' }
+        format.html {
+          flash[:success] = 'Se actualizo correctamente'
+          redirect_to brands_path
+        }
         format.json { render :show, status: :ok, location: @brand }
       else
         format.html { render :edit }
         format.json { render json: @brand.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  def destroy
+    if @brand.brand_models.count > 0
+      # return user to previous page
+      # with message
+      flash[:danger] = "#{@brand.name} tiene modelos associados. No se puede eliminar"
+      redirect_back(fallback_location: root_path)
+      return
+    end
+
+    @brand.destroy
+    respond_to do |format|
+      format.html {
+        flash[:success] = 'Brand was successfully destroyed.'
+        redirect_to brands_url
+      }
+      format.json { head :no_content }
     end
   end
 
