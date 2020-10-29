@@ -1,12 +1,28 @@
-<h1>Brands</h1>
+<ul class="nav">
+  <li class="nav-item">
+    <%= link_to "Crear marca", new_brand_path, class: "nav-link active" %>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">Link</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">Link</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+  </li>
+</ul>
+
+<h1>Marcas de productos</h1>
+<hr>
 <div>
   <% @brands.each do |brand| %>
     <ul>
       <li>
         <%= brand.name %> - id: <%= brand.id %>
       </li>
-      <li><%= image_tag(brand.logo, width: "150", height: "auto") if brand.logo.attached? %></li>
-      <li><%= link_to "Editar", edit_brand_path(brand), data: { turbolinks: false } %></li>
+      <li><%= image_tag(brand.logo, width: "250", height: "auto") if brand.logo.attached? %></li>
+      <li><%= link_to "Editar", edit_brand_path(brand) %></li>
     </ul>
     <hr>
   <% end %>
