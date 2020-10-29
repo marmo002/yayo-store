@@ -1,12 +1,10 @@
 class BrandsController < ApplicationController
   layout "admin_layout"
+  before_action :get_brand, only: [:edit, :update]
+
 
   def index
     @brands = Brand.all
-  end
-
-  def show
-    @brand = Brand.find(params[:id])
   end
 
   def new
@@ -14,7 +12,7 @@ class BrandsController < ApplicationController
   end
 
   def edit
-    @brand = Brand.find(params[:id])
+
   end
 
   def create
@@ -22,7 +20,7 @@ class BrandsController < ApplicationController
 
     respond_to do |format|
       if @brand.save
-        format.html { redirect_to @brand, notice: 'Product was successfully created.' }
+        format.html { redirect_to brands_path, notice: 'Product was successfully created.' }
         format.json { render :show, status: :created, location: @brand }
       else
         format.html { render :new }
@@ -32,11 +30,10 @@ class BrandsController < ApplicationController
   end
 
   def update
-    @brand = Brand.find(params[:id])
 
     respond_to do |format|
       if @brand.update(brand_params)
-        format.html { redirect_to @brand, notice: 'Se actualizo correctamente' }
+        format.html { redirect_to brands_path, notice: 'Se actualizo correctamente' }
         format.json { render :show, status: :ok, location: @brand }
       else
         format.html { render :edit }
@@ -46,6 +43,10 @@ class BrandsController < ApplicationController
   end
 
   private
+
+  def get_brand
+    @brand = Brand.find(params[:id])
+  end
 
   def brand_params
     params.require(:brand).permit(:name, :logo)

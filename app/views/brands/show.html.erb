@@ -1,7 +1,0 @@
-<h1><%= @brand.name %></h1>
-<hr>
-<% if @brand.logo.attached? %>
-  <%= image_tag  @brand.logo, width: "150"%>
-<% end %>
-<br>
-<%= link_to "editar", edit_brand_path(@brand), data: { turbolinks: false } %>

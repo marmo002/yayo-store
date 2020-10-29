@@ -1,19 +1,10 @@
+<h1>Marcas de productos</h1>
 <ul class="nav">
   <li class="nav-item">
-    <%= link_to "Crear marca", new_brand_path, class: "nav-link active" %>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#">Link</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#">Link</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+    <%= link_to "Crear nuevo", new_brand_path, class: "nav-link active" %>
   </li>
 </ul>
 
-<h1>Marcas de productos</h1>
 <hr>
 <div>
   <% @brands.each do |brand| %>
