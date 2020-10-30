@@ -5,7 +5,7 @@ class Brand < ApplicationRecord
   validates :name,     presence: { message: "Nombre no puede estar vacio" }
   validates :name,     uniqueness: { case_sensitive: false, message: "Marca ya existe!" }
 
-
+  # SCOPES
   default_scope { order(name: :asc) }
 
   # CUSTOM VALIDATION

@@ -31,7 +31,15 @@ class BrandModelTest < ActiveSupport::TestCase
     assert_not @model.save, "== Saved without brand"
   end
 
+  test "name is unique" do
+    model1 = BrandModel.create(name: "unique name", brand: Brand.last)
+    model2 = BrandModel.new(name: "unique name", brand: Brand.first)
+
+    assert_not model2.save ,"== Saved brand_model with already in used name"
+  end
+
   test "name is propertly formatted" do
+    @model_alt.save
     assert_equal "Model001 Is Here", @model_alt.name ,"== Saved brand_model name without proper formatting"
   end
 
