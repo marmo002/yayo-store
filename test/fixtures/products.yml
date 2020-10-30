@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  status: 1
+  type: one
+  brand: one
+  brand_model: one
+  gender: 1
+  description: MyText
+  price: 9.99
+  sale_price: 9.99
+
+two:
+  status: 1
+  type: two
+  brand: two
+  brand_model: two
+  gender: 1
+  description: MyText
+  price: 9.99
+  sale_price: 9.99
