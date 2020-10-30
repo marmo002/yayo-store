@@ -10,6 +10,8 @@ Rails.application.routes.draw do
     resources :types, except: [:show, :destroy]
     resources :brands, except: [:show]
     resources :brand_models
+    resources :colors, except: [:destroy]
+    # resources :sizes
   end
 
 end
