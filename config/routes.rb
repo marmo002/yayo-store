@@ -7,7 +7,9 @@ Rails.application.routes.draw do
 
 
   scope '/admin' do
-    resources :brands, only: [:index, :show, :new, :edit, :create, :update]
+    resources :types, except: [:show, :destroy]
+    resources :brands, except: [:show]
+    resources :brand_models
   end
 
 end
