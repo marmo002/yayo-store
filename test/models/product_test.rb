@@ -42,8 +42,33 @@ class ProductTest < ActiveSupport::TestCase
 
   test "associates type object is equal to product.type object" do
     @product1.save
-
     assert_equal @type1, @product1.type, '== Not the same type object'
+  end
+
+  test "gender is one of the allow options" do
+
+    assert_raises(ArgumentError) {
+      @product1.gender = "something else"
+    }
+
+  end
+
+  test "status is one of the allow options" do
+
+    assert_raises(ArgumentError) {
+      @product1.status = "something"
+    }
+
+  end
+
+  test "price must be greater than cero" do
+    skip
+    @product1.price = -20
+    @product1.valid?
+
+    assert_raises(ArgumentError) {
+    }
+
   end
 
 end
