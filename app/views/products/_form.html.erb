@@ -1,0 +1,52 @@
+
+<%= form_with(model: product, local: true) do |form| %>
+  <%= render "shared/errors", object: product %>
+    <div class="row">
+      <!-- left side -->
+      <div class="col-4">
+        <h2>Detalles</h2>
+        <%= form.label "Tipo de producto" %>
+        <%= form.select :type_id, @types, prompt: 'Selecciona uno' %>
+        <hr>
+        <%= form.label "Marca" %>
+        <%= form.select :brand_id, @brands, prompt: 'Selecciona uno' %>
+        <hr>
+        <%= form.label "Modelo" %>
+        <%= form.select :brand_model_id, @models, prompt: 'Selecciona uno' %>
+        <hr>
+        <%= form.label "Sexo" %>
+        <%= form.select :gender, Product.genders.keys, prompt: 'Selecciona uno' %>
+        <hr>
+      </div>
+      <!-- left side -->
+      <!-- right side -->
+      <div class="col-6">
+        <h2>Informaction</h2>
+        <%= form.label "Estado" %>
+        <%= form.select :status, Product.statuses.keys %>
+        <hr>
+        <%= form.label "Titulo" %>
+        <%= form.text_field :title %>
+        <hr>
+        <%= form.label "Descripcion" %>
+        <%= form.text_area :description %>
+        <hr>
+        <h2>Precio</h2>
+        <div class="row">
+          <div class="col">
+            <%= form.label "Precio" %> <br>
+            <%= form.number_field :price, in: 1.0..10000, step: 0.01 %>
+          </div>
+          <div class="col">
+            <%= form.label "Precio en oferta" %> <br>
+            <%= form.number_field :sale_price, in: 1.0..10000, step: 0.01 %>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12">
+        <%= form.submit %>
+      </div>
+      <!-- right side -->
+    </div>
+<% end %>

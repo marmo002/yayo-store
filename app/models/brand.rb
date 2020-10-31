@@ -1,9 +1,11 @@
 class Brand < ApplicationRecord
+  has_many :brand_models
+  has_one_attached :logo
+
   validates :name,     presence: { message: "Nombre no puede estar vacio" }
   validates :name,     uniqueness: { case_sensitive: false, message: "Marca ya existe!" }
 
-  has_one_attached :logo
-
+  # SCOPES
   default_scope { order(name: :asc) }
 
   # CUSTOM VALIDATION
