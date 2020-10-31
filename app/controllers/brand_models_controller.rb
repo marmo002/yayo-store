@@ -15,11 +15,7 @@ class BrandModelsController < ApplicationController
   def new
     @brand_model = BrandModel.new
   end
-
-  def edit
-
-  end
-
+  
   def create
     @brand_model = BrandModel.new(brand_model_params)
 
@@ -35,6 +31,10 @@ class BrandModelsController < ApplicationController
         format.json { render json: @brand_model.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def edit
+
   end
 
   def update

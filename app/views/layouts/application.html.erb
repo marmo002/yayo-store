@@ -58,7 +58,8 @@
                     <div class="col-lg-2 col-md-2">
                         <div class="logo">
                             <a href="./index.html">
-                                <%= image_pack_tag 'logo.png' %>
+                                <%= image_pack_tag 'logo-01.svg', width: "170" %>
+                                <!-- Yayo.store -->
                             </a>
                         </div>
                     </div>
@@ -153,8 +154,14 @@
                 </div>
                 <nav class="nav-menu mobile-menu">
                     <ul>
-                        <li><a href="./index.html">Home</a></li>
-                        <li><a href="./shop.html">Shop</a></li>
+                        <li>
+                          <%= link_to "Home", root_path %>
+                          <!-- <a href="./index.html">Home</a> -->
+                        </li>
+                        <li>
+                          <%= link_to "Shop", pages_shop_path %>
+                          <!-- <a href="./shop.html">Shop</a> -->
+                        </li>
                         <li><a href="#">Collection</a>
                             <ul class="dropdown">
                                 <li><a href="#">Men's</a></li>
@@ -184,6 +191,45 @@
 
     <%= yield %>
 
+    <!-- Partner Logo Section Begin -->
+    <div class="partner-logo">
+        <div class="container">
+            <div class="logo-carousel owl-carousel">
+                <div class="logo-item">
+                    <div class="tablecell-inner">
+                        <!-- <img src="img/logo-carousel/logo-1.png" alt=""> -->
+                        <%= image_pack_tag 'logo-carousel/logo-1.png' %>
+                    </div>
+                </div>
+                <div class="logo-item">
+                    <div class="tablecell-inner">
+                        <!-- <img src="img/logo-carousel/logo-2.png" alt=""> -->
+                        <%= image_pack_tag 'logo-carousel/logo-2.png' %>
+                    </div>
+                </div>
+                <div class="logo-item">
+                    <div class="tablecell-inner">
+                        <!-- <img src="img/logo-carousel/logo-3.png" alt=""> -->
+                        <%= image_pack_tag 'logo-carousel/logo-3.png' %>
+                    </div>
+                </div>
+                <div class="logo-item">
+                    <div class="tablecell-inner">
+                        <!-- <img src="img/logo-carousel/logo-4.png" alt=""> -->
+                        <%= image_pack_tag 'logo-carousel/logo-4.png' %>
+                    </div>
+                </div>
+                <div class="logo-item">
+                    <div class="tablecell-inner">
+                        <!-- <img src="img/logo-carousel/logo-5.png" alt=""> -->
+                        <%= image_pack_tag 'logo-carousel/logo-5.png' %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Partner Logo Section End -->
+
     <!-- Footer Section Begin -->
     <footer class="footer-section">
         <div class="container">
@@ -193,7 +239,8 @@
                         <div class="footer-logo">
                             <a href="#">
                               <!-- <img src="img/footer-logo.png" alt=""> -->
-                              <%= image_pack_tag 'footer-logo.png' %>
+                              <%#= image_pack_tag 'footer-logo.png' %>
+                              <%= image_pack_tag 'logo-01.svg', width: "170", class: "yayo-footer-logo" %>
                             </a>
                         </div>
                         <ul>
@@ -251,15 +298,16 @@
                           <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                           Copyright &copy;
                           <%= Date.today.year %>
-                          All rights reserved | This template is made with
-                          <i class="fa fa-heart-o" aria-hidden="true"></i>
-                          by
-                          <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                          All rights reserved
+                          <!-- | This template is made with -->
+                          <!-- <i class="fa fa-heart-o" aria-hidden="true"></i> -->
+                          <!-- by -->
+                          <!-- <a href="https://colorlib.com" target="_blank">Colorlib</a> -->
                           <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                         </div>
                         <div class="payment-pic">
                             <!-- <img src="img/payment-method.png" alt=""> -->
-                            <%= image_pack_tag 'payment-method.png' %>
+                            <%#= image_pack_tag 'payment-method.png' %>
                         </div>
                     </div>
                 </div>

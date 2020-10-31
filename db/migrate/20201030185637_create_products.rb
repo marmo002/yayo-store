@@ -2,6 +2,7 @@ class CreateProducts < ActiveRecord::Migration[6.0]
   def change
     create_table :products do |t|
       t.integer :status, default: 0
+      t.string :title
       t.references :type, foreign_key: true
       t.references :brand, foreign_key: true
       t.references :brand_model, foreign_key: true

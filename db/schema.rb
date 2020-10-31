@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(version: 2020_10_30_185637) do
 
   create_table "products", force: :cascade do |t|
     t.integer "status", default: 0
+    t.string "title"
     t.bigint "type_id"
     t.bigint "brand_id"
     t.bigint "brand_model_id"
