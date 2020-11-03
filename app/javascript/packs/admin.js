@@ -30,4 +30,4 @@ const imagePath = (name) => images(name, true)
 import 'bootstrap'
 
 // APPLICATION JS
-require("packs/admin_script")
+require("template/admin_script")
