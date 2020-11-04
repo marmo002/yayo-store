@@ -1,0 +1,27 @@
+<div class="nested-fields">
+  <div class="row">
+    <div class="col-6">
+      <div class="field">
+        <%= form.hidden_field :_destroy %>
+        <%= form.label :color_id %>
+        <%= form.collection_select :color_id, Color.all, :id, :name, prompt: true %>
+        <br>
+        <%#= form.label :pic %>
+        <%#= form.text_field :pic %>
+        <br>
+        <br>
+        <%#= form.label :pictures %>
+        <%#= form.file_field :pictures, multiple: true %>
+        <br>
+        <small>
+          <%= link_to "Remove", "#", data: {action: 'click->nested-form#remove_association'}  %>
+        </small>
+      </div>
+    </div>
+    <div class="col-6">
+      <!-- COLOR SIZE -->
+
+      <!-- COLOR SIZE -->
+    </div>
+  </div>
+</div>
