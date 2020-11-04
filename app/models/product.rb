@@ -1,10 +1,15 @@
 class Product < ApplicationRecord
+  
   belongs_to :type, optional: true
   belongs_to :brand, optional: true
   belongs_to :brand_model, optional: true
 
+
   enum status: [:borrador, :activo, :inactivo, :archivado]
   enum gender: [:no_applica, :unisex, :hombres, :mujeres, :niños]
+
+  has_many :product_colors, dependent: :destroy
+  has_many :colors, through: :product_colors
 
   # Validations
   validates :type_id,     presence: { message: "Producto debe tener un tipo" }
