@@ -9,6 +9,12 @@ require("@rails/activestorage").start()
 require("channels")
 import jQuery from 'jquery'
 
+// ------------------
+//     STIMULUS.JS
+// --------------------
+import "controllers"
+
+
 window.$ = jQuery
 window.jQuery = jQuery
 

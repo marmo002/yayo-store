@@ -11,7 +11,9 @@
   </div>
   <div class="row">
     <div class="col-12">
-
+      <div data-controller="nested-form">
+        <div data-target="nested-form.output"></div>
+      </div>
       <!-- CARD GROUP -->
       <div class="card-group">
         <% @products.each do |product| %>
