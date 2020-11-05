@@ -45,7 +45,7 @@
       </div>
 
       <div class="col-4">
-        <h2>Colors</h2>
+        <h2>Colores</h2>
 
         <!-- nested-form controller -->
         <div data-controller="nested-form">
@@ -58,7 +58,6 @@
           <%= form.fields_for :product_colors do |product_color| %>
             <%= render 'product_color_fields', form: product_color %>
           <% end %>
-          <hr>
           <div data-target="nested-form.add_item">
             <%= link_to "Add Color", "#", data: {action: 'click->nested-form#add_association'}  %>
           </div>
@@ -66,7 +65,6 @@
       <!-- nested-form controller -->
       </div>
 
-      <hr>
       <div class="col-12">
         <%= form.submit %>
       </div>

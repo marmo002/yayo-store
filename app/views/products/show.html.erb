@@ -48,6 +48,7 @@
       <% @product.product_colors.each do |product_color| %>
         <div class="row">
           <div class="col">
+            <small class="text-secondary">Product_color <%= product_color.id %></small>
             <p>Color:
               <span style="background-color:<%= product_color.color.hex %>;"><%= product_color.color.name %></span>
             </p>
