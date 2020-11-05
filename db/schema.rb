@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_30_185637) do
+ActiveRecord::Schema.define(version: 2020_11_04_014928) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,6 +57,15 @@ ActiveRecord::Schema.define(version: 2020_10_30_185637) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "product_colors", force: :cascade do |t|
+    t.bigint "product_id", null: false
+    t.bigint "color_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["color_id"], name: "index_product_colors_on_color_id"
+    t.index ["product_id"], name: "index_product_colors_on_product_id"
+  end
+
   create_table "products", force: :cascade do |t|
     t.integer "status", default: 0
     t.string "title"
@@ -82,6 +91,8 @@ ActiveRecord::Schema.define(version: 2020_10_30_185637) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "brand_models", "brands"
+  add_foreign_key "product_colors", "colors"
+  add_foreign_key "product_colors", "products"
   add_foreign_key "products", "brand_models"
   add_foreign_key "products", "brands"
   add_foreign_key "products", "types"

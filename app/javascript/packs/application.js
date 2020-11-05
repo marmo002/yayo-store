@@ -13,6 +13,11 @@ window.$ = jQuery
 window.jQuery = jQuery
 
 // ------------------
+//      STIMULUS.JS
+// --------------------
+import "controllers"
+
+// ------------------
 //     CSS
 // --------------------
 import "../stylesheets/application"

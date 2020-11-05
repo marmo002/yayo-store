@@ -11,11 +11,10 @@
   </div>
   <div class="row">
     <div class="col-12">
-
       <!-- CARD GROUP -->
-      <div class="card-group">
+      <div class="card-deck">
         <% @products.each do |product| %>
-        <div class="card">
+        <div class="col-3">
           <!-- <img src="..." class="card-img-top" alt="..."> -->
           <div class="card mb-3" style="max-width: 18rem;">
             <div class="card-header bg-transparent text-primary">Producto DB_id <%= product.id %></div>
@@ -40,6 +39,7 @@
             </div>
             <div class="card-footer bg-transparent">
               <%= link_to "Editar", edit_product_path(product), class: "card-link" %>
+              <%= link_to "Mostrar", product, class: "card-link" %>
             </div>
           </div>
 
@@ -47,7 +47,6 @@
         <% end %>
       </div>
       <!-- CARD GROUP -->
-
     </div>
   </div>
 </div>

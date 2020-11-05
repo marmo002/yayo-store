@@ -20,7 +20,7 @@
       </div>
       <!-- left side -->
       <!-- right side -->
-      <div class="col-6">
+      <div class="col-4">
         <h2>Informaction</h2>
         <%= form.label "Estado" %>
         <%= form.select :status, Product.statuses.keys %>
@@ -34,14 +34,35 @@
         <h2>Precio</h2>
         <div class="row">
           <div class="col">
-            <%= form.label "Precio" %> <br>
+            <%= form.label "Precio normal" %> <br>
             <%= form.number_field :price, in: 1.0..10000, step: 0.01 %>
           </div>
           <div class="col">
-            <%= form.label "Precio en oferta" %> <br>
+            <%= form.label "Precio de oferta" %> <br>
             <%= form.number_field :sale_price, in: 1.0..10000, step: 0.01 %>
           </div>
         </div>
+      </div>
+
+      <div class="col-4">
+        <h2>Colores</h2>
+
+        <!-- nested-form controller -->
+        <div data-controller="nested-form">
+          <template data-target="nested-form.template">
+            <%= form.fields_for :product_colors, ProductColor.new, child_index: "TEMPLATE_RECORD" do |product_color| %>
+              <%= render 'product_color_fields', form: product_color %>
+            <% end %>
+          </template>
+
+          <%= form.fields_for :product_colors do |product_color| %>
+            <%= render 'product_color_fields', form: product_color %>
+          <% end %>
+          <div data-target="nested-form.add_item">
+            <%= link_to "Add Color", "#", data: {action: 'click->nested-form#add_association'}  %>
+          </div>
+        </div>
+      <!-- nested-form controller -->
       </div>
 
       <div class="col-12">
