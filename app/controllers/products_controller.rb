@@ -86,7 +86,7 @@ class ProductsController < ApplicationController
         :price,
         :sale_price,
         product_colors_attributes: [
-          :_destroy, :color_id, :id
+          :_destroy, :color_id, :id, pictures: []
        ]
       )
     end

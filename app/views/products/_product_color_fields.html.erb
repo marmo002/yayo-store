@@ -6,13 +6,13 @@
         <%= form.label :color_id %>
         <%= form.collection_select :color_id, Color.all, :id, :name, prompt: true %>
         <br>
-        <%#= form.label :pic %>
-        <%#= form.text_field :pic %>
+        <%= form.label :pictures %>
+        <%= form.file_field :pictures, multiple: true %>
         <br>
-        <br>
-        <%#= form.label :pictures %>
-        <%#= form.file_field :pictures, multiple: true %>
-        <br>
+        <span class="text-muted">
+          Images: TO gather images. Make Ajax request with product_color id to
+          retrieve a partial with images and delete button per image
+        </span>
         <small>
           <%= link_to "Remove", "#", data: {action: 'click->nested-form#remove_association'}  %>
         </small>
