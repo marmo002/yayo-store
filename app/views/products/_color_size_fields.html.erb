@@ -1,0 +1,20 @@
+<div class="nested-fields">
+
+  <div class="field">
+    <%= form.hidden_field :_destroy %>
+    <div class="row">
+      <div class="col">
+        <%= form.label "Talla" %> <br>
+        <%= form.collection_select :size_id, Size.all, :id, :size, prompt: true %>
+      </div>
+      <div class="col">
+        <%= form.label :stock %> <br>
+        <%= form.text_field :stock %>
+      </div>
+    </div>
+
+    <small>
+      <%= link_to "Eliminar talla", "#", data: {action: 'click->nested-form#remove_association'}  %>
+    </small>
+  </div>
+</div>

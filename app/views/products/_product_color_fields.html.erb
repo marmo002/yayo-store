@@ -7,15 +7,32 @@
         <br>
         <br>
         <%= form.file_field :pictures, multiple: true %>
-        <br>
+        <hr>
         <small>
           <%= link_to "Remove", "#", data: {action: 'click->nested-form#remove_association'}  %>
         </small>
       </div>
     </div>
     <div class="col-6">
-      <!-- COLOR SIZE -->
+      <h5>Tallas</h5>
+      <hr>
 
+      <!-- COLOR SIZE -->
+      <div data-controller="nested-form">
+        <template data-target="nested-form.template">
+          <%= form.fields_for :color_sizes, ColorSize.new, child_index: "TEMPLATE_RECORD" do |color_size| %>
+            <%= render 'color_size_fields', form: color_size %>
+          <% end %>
+        </template>
+
+        <%= form.fields_for :color_sizes do |color_size| %>
+        <%= render 'color_size_fields', form: color_size %>
+        <% end %>
+
+        <div data-target="nested-form.add_item">
+          <%= link_to "Agregar", "#", data: {action: 'click->nested-form#add_association'}  %>
+        </div>
+      </div>
       <!-- COLOR SIZE -->
     </div>
   </div>
