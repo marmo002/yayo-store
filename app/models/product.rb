@@ -26,7 +26,15 @@ class Product < ApplicationRecord
     when "inactivo" then "warning"
     when "archivado" then "info"
     end
-
   end
+
+  def type_name
+    self.type.name
+  end
+
+  def brand_name
+    self.brand.name
+  end
+
 
 end
