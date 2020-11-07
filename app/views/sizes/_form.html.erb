@@ -1,9 +1,0 @@
-<%= form_with(model: size, local: true) do |form| %>
-  <%= render "shared/errors", object: size %>
-  <hr>
-  <%= form.label "Nombre" %>
-  <%= form.text_field :name %>
-  <hr>
-  <%= form.submit 'Crear talla' %>
-
-<% end %>

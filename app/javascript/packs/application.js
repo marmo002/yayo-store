@@ -13,11 +13,6 @@ window.$ = jQuery
 window.jQuery = jQuery
 
 // ------------------
-//      STIMULUS.JS
-// --------------------
-import "controllers"
-
-// ------------------
 //     CSS
 // --------------------
 import "../stylesheets/application"
@@ -35,14 +30,17 @@ const imagePath = (name) => images(name, true)
 import 'bootstrap'
 
 // TEMPLATE JS
-require("template/jquery-ui.min")
-require("template/jquery.countdown.min")
-require("template/jquery.nice-select.min")
-require("template/jquery.zoom.min")
-require("template/jquery.dd")
-require("template/jquery.slicknav")
-require("template/owl.carousel.min")
-require("template/main")
+require("packs/jquery-ui.min")
+require("packs/jquery.countdown.min")
+require("packs/jquery.nice-select.min")
+require("packs/jquery.zoom.min")
+require("packs/jquery.dd")
+require("packs/jquery.slicknav")
+require("packs/owl.carousel.min")
 
+
+document.addEventListener("DOMContentLoaded", function(){
+
+});
 // APPLICATION JS
-require("template/custom")
+require("packs/custom")
