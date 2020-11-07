@@ -1,2 +1,85 @@
-<h1>Products#show</h1>
-<p>Find me in app/views/products/show.html.erb</p>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+      <h1>Product ID: <%= @product.id %></h1>
+      <ul class="nav">
+        <li class="nav-item">
+          <%= link_to "Lista de productos", products_path, class: "nav-link active" %>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6">
+      <!-- CARD GROUP -->
+
+          <div class="card mb-3">
+            <div class="card-header bg-transparent text-primary">Producto DB_id <%= @product.id %></div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                <small class="text-muted">Estado:
+                  <span class="badge badge-<%= @product.status_class %>"><%= @product.status %></span>
+                </small>
+              </li>
+              <li class="list-group-item"><small class="text-muted">Tipo: <%= @product.type.name %></small></li>
+              <li class="list-group-item"><small class="text-muted">Marca: <%= @product.brand.name %></small></li>
+              <li class="list-group-item"><small class="text-muted">Modelo: <%= @product.brand_model ? @product.brand_model.name : "No tiene modelo" %></small></li>
+              <li class="list-group-item"><small class="text-muted">Genero: <%= @product.gender %></small></li>
+            </ul>
+            <div class="card-body">
+              <h5 class="card-title"><%= @product.title.blank? ?  "No tiene titulo" : @product.title  %></h5>
+              <p class="card-text"><%= @product.description.blank? ? "No tiene description" : @product.description %></p>
+            </div>
+            <div class="card-footer bg-transparent text-success">
+              Precio: <%= number_to_currency(@product.price, unit: "") %> |
+              Precio de descuento: <%= number_to_currency(@product.sale_price, unit: "") %>
+            </div>
+            <div class="card-footer bg-transparent">
+              <%= link_to "Editar", edit_product_path(@product), class: "card-link" %>
+            </div>
+          </div>
+
+      <!-- CARD GROUP -->
+    </div>
+    <div class="col-6">
+      <h2 class="text-primary">Colores</h2>
+      <% @product.product_colors.each do |product_color| %>
+        <div class="row">
+          <div class="col">
+            <% if product_color.pictures.attached? %>
+            <p class="text-secondary">Images</p>
+            <div class="card-deck">
+              <% product_color.pictures.each do |pic| %>
+              <div class="col-4">
+                <div class="card">
+                  <%= image_tag pic, width: 150, class: "card-img-top" %>
+                </div>
+              </div>
+
+              <% end %>
+            </div>
+            <% else %>
+            <% end %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <small class="text-secondary">Product_color ID <%= product_color.id %></small>
+            <p>Color:
+              <%= product_color.color.name %>
+              <span class="color_bullet" style="background-color:<%= product_color.color.hex %>;">
+              </span>
+            </p>
+            <small class="text-secondary">Tallas</small>
+            <ul>
+              <% product_color.color_sizes.each do |color_size| %>
+              <li>Talla <%= color_size.size.name %> | Stock: <%= color_size.stock %></li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+        <hr>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -11,13 +11,11 @@
   </div>
   <div class="row">
     <div class="col-12">
-
       <!-- CARD GROUP -->
-      <div class="card-group">
+      <div class="card-deck">
         <% @products.each do |product| %>
-        <div class="card">
-          <!-- <img src="..." class="card-img-top" alt="..."> -->
-          <div class="card mb-3" style="max-width: 18rem;">
+        <div class="col-4">
+          <div class="card mb-4">
             <div class="card-header bg-transparent text-primary">Producto DB_id <%= product.id %></div>
             <ul class="list-group list-group-flush">
               <li class="list-group-item">
@@ -40,14 +38,13 @@
             </div>
             <div class="card-footer bg-transparent">
               <%= link_to "Editar", edit_product_path(product), class: "card-link" %>
+              <%= link_to "Mostrar", product, class: "card-link" %>
             </div>
           </div>
-
         </div>
         <% end %>
       </div>
       <!-- CARD GROUP -->
-
     </div>
   </div>
 </div>

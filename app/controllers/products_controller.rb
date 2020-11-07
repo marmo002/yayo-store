@@ -21,7 +21,7 @@ class ProductsController < ApplicationController
       if @product.save
         format.html {
           flash[:success] = "Se creo producto existosamente"
-          redirect_to products_path
+          redirect_to @product
         }
         format.json { render :show, status: :created, location: @product }
       else
@@ -40,7 +40,7 @@ class ProductsController < ApplicationController
       if @product.update(product_params)
         format.html {
           flash[:success] = 'Se actualizo correctamente'
-          redirect_to products_path
+          redirect_to @product
         }
         format.json { render :show, status: :ok, location: products_path }
       else
@@ -74,7 +74,22 @@ class ProductsController < ApplicationController
     end
 
     def product_params
-      params.require(:product).permit(:status, :title, :type_id, :brand_id, :brand_model_id, :title, :gender, :description, :price, :sale_price)
+      params.require(:product).permit(
+        :status,
+        :title,
+        :type_id,
+        :brand_id,
+        :brand_model_id,
+        :title,
+        :gender,
+        :description,
+        :price,
+        :sale_price,
+        product_colors_attributes: [
+          :_destroy, :color_id, :id, pictures: [],
+          color_sizes_attributes: [ :_destroy, :size_id, :id, :stock ]
+       ]
+      )
     end
 
 end

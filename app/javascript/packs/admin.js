@@ -9,6 +9,12 @@ require("@rails/activestorage").start()
 require("channels")
 import jQuery from 'jquery'
 
+// ------------------
+//     STIMULUS.JS
+// --------------------
+import "controllers"
+
+
 window.$ = jQuery
 window.jQuery = jQuery
 
@@ -30,4 +36,4 @@ const imagePath = (name) => images(name, true)
 import 'bootstrap'
 
 // APPLICATION JS
-require("packs/admin_script")
+require("template/admin_script")

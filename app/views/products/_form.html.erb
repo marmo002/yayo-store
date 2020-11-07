@@ -2,51 +2,83 @@
 <%= form_with(model: product, local: true) do |form| %>
   <%= render "shared/errors", object: product %>
     <div class="row">
-      <!-- left side -->
-      <div class="col-4">
+      <!-- TOP INPUTS -->
+      <div class="col-12">
         <h2>Detalles</h2>
-        <%= form.label "Tipo de producto" %>
-        <%= form.select :type_id, @types, prompt: 'Selecciona uno' %>
-        <hr>
-        <%= form.label "Marca" %>
-        <%= form.select :brand_id, @brands, prompt: 'Selecciona uno' %>
-        <hr>
-        <%= form.label "Modelo" %>
-        <%= form.select :brand_model_id, @models, prompt: 'Selecciona uno' %>
-        <hr>
-        <%= form.label "Sexo" %>
-        <%= form.select :gender, Product.genders.keys, prompt: 'Selecciona uno' %>
+        <div class="row">
+          <div class="col">
+            <%= form.label "Categoria" %>
+            <%= form.select :type_id, @types, prompt: 'Selecciona uno' %>
+          </div>
+          <div class="col">
+            <%= form.label "Marca" %>
+            <%= form.select :brand_id, @brands, prompt: 'Selecciona uno' %>
+          </div>
+          <div class="col">
+            <%= form.label "Modelo" %>
+            <%= form.select :brand_model_id, @models, prompt: 'Selecciona uno' %>
+          </div>
+          <div class="col">
+            <%= form.label "Genero" %>
+            <%= form.select :gender, Product.genders.keys, prompt: 'Selecciona uno' %>
+          </div>
+        </div>
         <hr>
       </div>
-      <!-- left side -->
-      <!-- right side -->
-      <div class="col-6">
-        <h2>Informaction</h2>
-        <%= form.label "Estado" %>
+      <!-- TOP INPUTS -->
+      <!-- LEFT side -->
+      <div class="col-3">
+        <h2>Informacion</h2>
+        <%= form.label "Estado" %> <br>
         <%= form.select :status, Product.statuses.keys %>
         <hr>
-        <%= form.label "Titulo" %>
+        <%= form.label "Titulo" %> <br>
         <%= form.text_field :title %>
         <hr>
-        <%= form.label "Descripcion" %>
+        <%= form.label "Descripcion" %> <br>
         <%= form.text_area :description %>
         <hr>
         <h2>Precio</h2>
         <div class="row">
           <div class="col">
-            <%= form.label "Precio" %> <br>
+            <%= form.label "Precio normal" %> <br>
             <%= form.number_field :price, in: 1.0..10000, step: 0.01 %>
           </div>
           <div class="col">
-            <%= form.label "Precio en oferta" %> <br>
+            <%= form.label "Precio de oferta" %> <br>
             <%= form.number_field :sale_price, in: 1.0..10000, step: 0.01 %>
           </div>
         </div>
       </div>
+      <!-- LEFT side -->
+
+      <!-- COLORS side -->
+      <div class="col-9">
+        <h2>Colores</h2>
+
+        <!-- nested-form controller -->
+        <div data-controller="nested-form">
+          <template data-target="nested-form.template">
+            <%= form.fields_for :product_colors, ProductColor.new, child_index: "TEMPLATE_RECORD" do |product_color| %>
+              <%= render 'product_color_fields', form: product_color %>
+            <% end %>
+          </template>
+
+          <%= form.fields_for :product_colors do |product_color| %>
+            <%= render 'product_color_fields', form: product_color %>
+          <% end %>
+          <div data-target="nested-form.add_item">
+            <%= link_to "Agregar Color", "#", data: {action: 'click->nested-form#add_association'}  %>
+          </div>
+        </div>
+        <!-- nested-form controller -->
+
+      </div>
+      <!-- COLORS side -->
 
       <div class="col-12">
-        <%= form.submit %>
+        <hr>
+        <%= form.submit 'Crear Producto'%>
       </div>
-      <!-- right side -->
     </div>
 <% end %>
