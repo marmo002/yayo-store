@@ -1,0 +1,17 @@
+<h1>Color "<%= @color.name %>"</h1>
+
+<p>
+  <strong>Name:</strong>
+  <%= @color.name %>
+</p>
+
+<p>
+
+  <strong>Hex:</strong>
+  <span style="background-color:<%= @color.hex %>">
+    <%= @color.hex %>
+  </span>
+</p>
+
+<%= link_to 'Edit', edit_color_path(@color) %> |
+<%= link_to 'Back', colors_path %>

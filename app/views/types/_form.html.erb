@@ -1,0 +1,10 @@
+<%= form_with(model: type, local: true) do |form| %>
+  <%= render "shared/errors", object: type %>
+  <hr>
+  <%= form.label "Nombre" %>
+  <%= form.text_field :name %>
+  <hr>
+
+  <%= form.submit %>
+
+<% end %>

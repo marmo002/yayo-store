@@ -1,0 +1,28 @@
+<h1>Marcas de productos</h1>
+<ul class="nav">
+  <li class="nav-item">
+    <%= link_to "Crear nuevo", new_brand_path, class: "nav-link active" %>
+  </li>
+</ul>
+
+<hr>
+<div>
+  <% @brands.each do |brand| %>
+    <ul>
+      <li>
+        <%= brand.name %> - id: <%= brand.id %>
+      </li>
+      <li><%= image_tag(brand.logo, width: "250", height: "auto") if brand.logo.attached? %></li>
+      <% if brand.brand_models.count > 0 %>
+      <li>
+        <% brand.brand_models.each do |model| %>
+          <span class="badge badge-info"><%= model.name %></span>
+        <% end %>
+      </li>
+      <% end %>
+      <li><%= link_to "Editar", edit_brand_path(brand) %></li>
+      <li><%= link_to 'Borrar', brand, method: :delete, data: { confirm: 'Estas seguro?' } %></li>
+    </ul>
+    <hr>
+  <% end %>
+</div>

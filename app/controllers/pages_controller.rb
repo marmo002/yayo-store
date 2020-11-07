@@ -4,6 +4,10 @@ class PagesController < ApplicationController
 
   end
 
+  def shop
+
+  end
+
   private
 
 end

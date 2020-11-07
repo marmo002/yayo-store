@@ -3,6 +3,17 @@ Rails.application.routes.draw do
 
   root "pages#home"
 
-  get "/pages/home" => "pages#home"
+  get "/pages/home", to: "pages#home"
+  get "/pages/shop", to: "pages#shop"
+
+
+  scope '/admin' do
+    resources :types, except: [:show, :destroy]
+    resources :brands, except: [:show]
+    resources :brand_models
+    resources :products, except: [:destroy]
+    resources :colors, except: [:destroy]
+    resources :sizes, except: [:show, :destroy]
+  end
 
 end
