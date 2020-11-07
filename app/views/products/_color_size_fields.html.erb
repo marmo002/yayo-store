@@ -5,7 +5,7 @@
     <div class="row">
       <div class="col">
         <%= form.label "Talla" %> <br>
-        <%= form.collection_select :size_id, Size.all, :id, :size, prompt: true %>
+        <%= form.collection_select :size_id, Size.all, :id, :name, prompt: true %>
       </div>
       <div class="col">
         <%= form.label :stock %> <br>

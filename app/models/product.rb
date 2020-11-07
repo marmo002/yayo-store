@@ -18,6 +18,9 @@ class Product < ApplicationRecord
   validates :price, numericality: { greater_than: 0, message: "Precio debe ser mayor a cero" }
   validates :sale_price, numericality: { greater_than: 0, allow_nil:true, message: "Precio de oferta debe ser mayor a cero" }
 
+  # SCOPES
+  default_scope { order(updated_at: :desc) }
+
   # temp method
   def status_class
     case self.status

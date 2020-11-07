@@ -42,34 +42,43 @@
       <!-- CARD GROUP -->
     </div>
     <div class="col-6">
-      <h2 class="text-primary">Colors</h2>
+      <h2 class="text-primary">Colores</h2>
       <% @product.product_colors.each do |product_color| %>
-        <div class="row">
-          <div class="col">
-            <small class="text-secondary">Product_color <%= product_color.id %></small>
-            <p>Color:
-              <span style="background-color:<%= product_color.color.hex %>;"><%= product_color.color.name %></span>
-            </p>
-          </div>
-        </div>
         <div class="row">
           <div class="col">
             <% if product_color.pictures.attached? %>
             <p class="text-secondary">Images</p>
-              <div class="card-deck">
-                <% product_color.pictures.each do |pic| %>
-                  <div class="col-4">
-                    <div class="card">
-                      <%= image_tag pic, width: 150, class: "card-img-top" %>
-                    </div>
-                  </div>
-
-                <% end %>
+            <div class="card-deck">
+              <% product_color.pictures.each do |pic| %>
+              <div class="col-4">
+                <div class="card">
+                  <%= image_tag pic, width: 150, class: "card-img-top" %>
+                </div>
               </div>
+
+              <% end %>
+            </div>
             <% else %>
             <% end %>
           </div>
         </div>
+        <div class="row">
+          <div class="col">
+            <small class="text-secondary">Product_color ID <%= product_color.id %></small>
+            <p>Color:
+              <%= product_color.color.name %>
+              <span class="color_bullet" style="background-color:<%= product_color.color.hex %>;">
+              </span>
+            </p>
+            <small class="text-secondary">Tallas</small>
+            <ul>
+              <% product_color.color_sizes.each do |color_size| %>
+              <li>Talla <%= color_size.size.name %> | Stock: <%= color_size.stock %></li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+        <hr>
       <% end %>
     </div>
   </div>

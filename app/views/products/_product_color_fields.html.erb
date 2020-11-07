@@ -20,7 +20,7 @@
       <!-- COLOR SIZE -->
       <div data-controller="nested-form">
         <template data-target="nested-form.template">
-          <%= form.fields_for :color_sizes, ColorSize.new, child_index: "TEMPLATE_RECORD" do |color_size| %>
+          <%= form.fields_for :color_sizes, ColorSize.new, child_index: "TEMPLATE_SUB_RECORD" do |color_size| %>
             <%= render 'color_size_fields', form: color_size %>
           <% end %>
         </template>

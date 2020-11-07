@@ -21,7 +21,7 @@ class ProductsController < ApplicationController
       if @product.save
         format.html {
           flash[:success] = "Se creo producto existosamente"
-          redirect_to products_path
+          redirect_to @product
         }
         format.json { render :show, status: :created, location: @product }
       else
@@ -40,7 +40,7 @@ class ProductsController < ApplicationController
       if @product.update(product_params)
         format.html {
           flash[:success] = 'Se actualizo correctamente'
-          redirect_to products_path
+          redirect_to @product
         }
         format.json { render :show, status: :ok, location: products_path }
       else

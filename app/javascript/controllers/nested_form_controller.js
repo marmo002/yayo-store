@@ -19,7 +19,20 @@ export default class extends Controller {
 
   add_association(event) {
     event.preventDefault()
-    var content = this.templateTarget.innerHTML.replace(/TEMPLATE_RECORD/g, Math.floor(Math.random() * 20))
+
+    var content = this.templateTarget.innerHTML
+
+    if ( content.includes('TEMPLATE_RECORD') ) {
+
+      content = content.replace(/TEMPLATE_RECORD/g, Math.floor(Math.random() * 20))
+
+    } else if ( content.includes('TEMPLATE_SUB_RECORD') ) {
+
+      content = content.replace(/TEMPLATE_SUB_RECORD/g, Math.floor(Math.random() * 20))
+      
+    }
+
+    // var content = this.templateTarget.innerHTML.replace(/TEMPLATE_RECORD/g, Math.floor(Math.random() * 20))
     this.add_itemTarget.insertAdjacentHTML('beforebegin', content)
   }
 

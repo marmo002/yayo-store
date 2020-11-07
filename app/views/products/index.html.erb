@@ -14,9 +14,8 @@
       <!-- CARD GROUP -->
       <div class="card-deck">
         <% @products.each do |product| %>
-        <div class="col-3">
-          <!-- <img src="..." class="card-img-top" alt="..."> -->
-          <div class="card mb-3" style="max-width: 18rem;">
+        <div class="col-4">
+          <div class="card mb-4">
             <div class="card-header bg-transparent text-primary">Producto DB_id <%= product.id %></div>
             <ul class="list-group list-group-flush">
               <li class="list-group-item">
@@ -42,7 +41,6 @@
               <%= link_to "Mostrar", product, class: "card-link" %>
             </div>
           </div>
-
         </div>
         <% end %>
       </div>
