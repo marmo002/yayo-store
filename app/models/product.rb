@@ -5,7 +5,7 @@ class Product < ApplicationRecord
   belongs_to :brand_model, optional: true
 
   enum status: [:borrador, :activo, :inactivo, :archivado]
-  enum gender: [:no_applica, :unisex, :hombres, :mujeres, :niños]
+  enum gender: [:no_applica, :unisex, :hombre, :mujere, :ninos]
 
   has_many :product_colors, dependent: :destroy
   has_many :colors, through: :product_colors
