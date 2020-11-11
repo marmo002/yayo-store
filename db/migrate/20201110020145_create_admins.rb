@@ -8,7 +8,7 @@ class CreateAdmins < ActiveRecord::Migration[6.0]
       t.integer :admin_type
       t.integer :status, default: 0
       t.integer :login_attempts, default: 3
-      t.string :ref_code
+      t.string :ref_code_digest
       t.datetime :ref_code_expiry
 
       t.timestamps

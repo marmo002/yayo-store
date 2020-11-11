@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 2020_11_10_020145) do
     t.integer "admin_type"
     t.integer "status", default: 0
     t.integer "login_attempts", default: 3
-    t.string "ref_code"
+    t.string "ref_code_digest"
     t.datetime "ref_code_expiry"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
