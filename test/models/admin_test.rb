@@ -2,7 +2,8 @@ require 'test_helper'
 
 class AdminTest < ActiveSupport::TestCase
   def setup
-    @admin = Admin.create(email: "mail@mail.com", admin_type: :admin)
+    @ref_code = SecureRandom.base64(24)
+    @admin = Admin.create(email: "mail@mail.com", admin_type: :admin, ref_code: @ref_code, ref_code_expiry: DateTime.now)
   end
 
   def tear_down
@@ -68,6 +69,18 @@ class AdminTest < ActiveSupport::TestCase
   test "Admin can't be updated if password doesn't meet format requirements" do
     params = {first_name: "John", last_name: "Doe", password: "Password12á"}
     assert_not @admin.update(params), "== Updated admin with wrong password format"
+  end
+
+  test "Admin gets authenticated with ref_code" do
+
+    assert_equal @admin, @admin.authenticate_ref_code(@ref_code), "== Did not authenticate with ref_code"
+  end
+
+  test "Admin gets authenticated with email and ref_code" do
+    admin = Admin.find_by(email: 'mail@mail.com')
+
+    assert_equal @admin, admin.authenticate_ref_code(@ref_code), "== Did not authenticate with email and ref_code"
+
   end
 
 end

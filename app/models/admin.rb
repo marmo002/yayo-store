@@ -10,13 +10,9 @@ class Admin < ApplicationRecord
   validates :email, uniqueness: true
   validates :first_name, :last_name, :password, presence: true, on: :update
   validates :password, confirmation: true, on: :update
-  validates :password, :length => { in: 6..20}, on: :update
+  validates :password, length: { in: 6..20}, on: :update
   validates :password, format: {
                                   with: PASSWORD_FORMAT,
                                   message: "Clave no cumple con formato requerido" },on: :update
-
-  before_create do
-    self.ref_code = SecureRandom.urlsafe_base64
-  end
 
 end
