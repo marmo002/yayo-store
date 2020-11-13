@@ -1,0 +1,23 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# one:
+#   first_name: MyString
+#   last_name: MyString
+#   email: MyString
+#   password_digest: MyString
+#   type: 1
+#   status: 1
+#   login_attempts: 1
+#   ref_code: MyString
+#   ref_code_expiry: 2020-11-09 21:01:45
+#
+# two:
+#   first_name: MyString
+#   last_name: MyString
+#   email: MyString
+#   password_digest: MyString
+#   type: 1
+#   status: 1
+#   login_attempts: 1
+#   ref_code: MyString
+#   ref_code_expiry: 2020-11-09 21:01:45
