@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
 
   scope '/admin' do
+    resources :admins, except: [:show, :destroy]
     resources :types, except: [:show, :destroy]
     resources :brands, except: [:show]
     resources :brand_models

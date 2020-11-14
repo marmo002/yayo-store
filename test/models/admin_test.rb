@@ -2,8 +2,8 @@ require 'test_helper'
 
 class AdminTest < ActiveSupport::TestCase
   def setup
-    @ref_code = SecureRandom.base64(24)
-    @admin = Admin.create(email: "mail@mail.com", admin_type: :admin, ref_code: @ref_code, ref_code_expiry: DateTime.current + 1.day)
+    @admin = Admin.create(email: "mail@mail.com", admin_type: :admin)
+    @ref_code = @admin.set_ref_code
   end
 
   def tear_down
