@@ -26,8 +26,8 @@ class Admin < ApplicationRecord
   end
 
   def set_ref_code
-    new_ref_code = SecureRandom.base64(24)
-
+    # new_ref_code = SecureRandom.base64(24)
+    new_ref_code = "Dcxl6cqc4COBBrZvOVsT8eighDtcRasT"
     self.ref_code = new_ref_code
     self.ref_code_expiry = DateTime.current + 1.day
 
