@@ -21,8 +21,8 @@ class Admin < ApplicationRecord
   before_create :set_ref_code
 
   # INSTANCE METHODS
-  def is_ref_code_expired?
-    DateTime.current < self.ref_code_expiry ? false : true
+  def ref_code_still_valid?
+    DateTime.current < self.ref_code_expiry
   end
 
   def set_ref_code
