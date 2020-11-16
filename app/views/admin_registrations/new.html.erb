@@ -8,7 +8,9 @@
             <h3 class="card-title mb-0">Autenticate</h3>
             <p class="mb-4 text-muted">Para continuar con registro</p>
 
-            <%= form_with( url: "/admin/authenticate/create", scope: 'new_admin', method: "post", local: true, class: 'mt-4 mb-5') do |form| %>
+            <%= form_with( model: @admin_registration, url: authenticate_path, local: true, class: 'mt-4 mb-5') do |form| %>
+              <%= render "shared/errors", object: @admin_registration %>
+
               <div class="form-group">
                 <%= form.label "Correo electronico", for: :new_admin_email %>
                 <%= form.email_field :email, id: :new_admin_email, class: 'form-control'%>
