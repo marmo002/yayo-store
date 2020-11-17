@@ -21,10 +21,6 @@ class Admin < ApplicationRecord
   before_create :set_ref_code
 
   # INSTANCE METHODS
-  def ref_code_still_valid?
-    DateTime.current < self.ref_code_expiry
-  end
-
   def set_ref_code
     # new_ref_code = SecureRandom.base64(24)
     new_ref_code = "Dcxl6cqc4COBBrZvOVsT8eighDtcRasT"
@@ -34,6 +30,19 @@ class Admin < ApplicationRecord
     new_ref_code
   end
 
+  def ref_code_still_valid?
+    DateTime.current < self.ref_code_expiry
+  end
+
+  def reduce_attempts
+    self.login_attempts -= 1
+    if self.login_attempts < 1
+      self.suspend_user
+    end
+    self.save(validate: false)
+  end
+
+  # To be moved to helpers
   def code_expires_in
     if self.pre_registered?
       time = ref_code_expiry.in_time_zone("Lima")
@@ -45,6 +54,13 @@ class Admin < ApplicationRecord
 
   def full_name
     "#{first_name} #{last_name}"
+  end
+
+  private
+
+  def suspend_user
+    self.status = :suspended
+    # Set up email notification to admin user: Your account has been suspended
   end
 
 end
