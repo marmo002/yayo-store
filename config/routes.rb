@@ -8,6 +8,12 @@ Rails.application.routes.draw do
 
 
   scope '/admin' do
+    get "/authenticate", to: "admin_registrations#new"
+    post "/authenticate", to: "admin_registrations#create"
+    get "/registration", to: "admin_registrations#edit"
+    post "/registration", to: "admin_registrations#update"
+
+    resources :admins, except: [:show, :destroy]
     resources :types, except: [:show, :destroy]
     resources :brands, except: [:show]
     resources :brand_models

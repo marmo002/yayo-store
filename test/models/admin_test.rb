@@ -2,8 +2,8 @@ require 'test_helper'
 
 class AdminTest < ActiveSupport::TestCase
   def setup
-    @ref_code = SecureRandom.base64(24)
-    @admin = Admin.create(email: "mail@mail.com", admin_type: :admin, ref_code: @ref_code, ref_code_expiry: DateTime.current + 1.day)
+    @admin = Admin.create(email: "mail@mail.com", admin_type: :admin)
+    @ref_code = @admin.set_ref_code
   end
 
   def tear_down
@@ -74,7 +74,7 @@ class AdminTest < ActiveSupport::TestCase
   test "whether admin ref_code is expired" do
     admin = Admin.find_by(email: 'mail@mail.com')
 
-    assert_not @admin.is_ref_code_expired?, "== Admin ref code is expired"
+    assert @admin.ref_code_still_valid?, "== Admin ref code is expired"
   end
 
   test "Admin gets authenticated with ref_code" do
