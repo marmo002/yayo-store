@@ -8,14 +8,17 @@ class Admin < ApplicationRecord
                 #yellow | blue | red | grey
 
   validates :email, :admin_type, presence: true, on: :create
-  validates :email, format: { with: /\A[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\z/, message: "Email no cumple formato" },
-                              uniqueness: { case_sensitive: false }
-  validates :first_name, :last_name, :password, presence: true, on: :update
-  validates :password, confirmation: true, on: :update
-  validates :password, length: { in: 6..20 }, on: :update
-  validates :password, format: { with: PASSWORD_FORMAT,
+  validates :email,         format: { with: /\A[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\z/, message: "Email no cumple formato" },
+                            uniqueness: { case_sensitive: false }
+
+  validates :first_name,    presence: { message: 'Nombre no puede quedar en blanco'}, on: :update
+  validates :last_name,     presence: { message: 'Apellido no puede quedar en blanco'}, on: :update
+  validates :password,      format: { with: PASSWORD_FORMAT,
                                  message: "Clave no cumple con formato requerido"
-                                }, on: :update
+                                },
+                            length: { in: 6..8, allow_nil: true, message: "Clave necesita entre 6 a 8 caracteres" },
+                            on: :update
+validates :password, confirmation: { message: "Confirmacion no es igual a Contraseña" }, on: :update
 
   # CALLBACKS
   before_create :set_ref_code
