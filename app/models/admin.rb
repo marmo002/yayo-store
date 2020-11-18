@@ -16,7 +16,7 @@ class Admin < ApplicationRecord
   validates :password,      format: { with: PASSWORD_FORMAT,
                                  message: "Clave no cumple con formato requerido"
                                 },
-                            length: { in: 6..8, allow_nil: true, message: "Clave necesita entre 6 a 8 caracteres" },
+                            length: { minimum: 6, message: "Clave minimo de 6 caracteres" },
                             on: :update
 validates :password, confirmation: { message: "Confirmacion no es igual a Contraseña" }, on: :update
 
@@ -45,6 +45,17 @@ validates :password, confirmation: { message: "Confirmacion no es igual a Contra
     self.save(validate: false)
   end
 
+  def register_user
+    self.status = :registered
+    self.save validate: false
+    # Set up email notification to admin user: Your account has been registered
+  end
+
+  def suspend_user
+    self.status = :suspended
+    # Set up email notification to admin user: Your account has been suspended
+  end
+
   # To be moved to helpers
   def code_expires_in
     if self.pre_registered?
@@ -60,10 +71,5 @@ validates :password, confirmation: { message: "Confirmacion no es igual a Contra
   end
 
   private
-
-  def suspend_user
-    self.status = :suspended
-    # Set up email notification to admin user: Your account has been suspended
-  end
 
 end

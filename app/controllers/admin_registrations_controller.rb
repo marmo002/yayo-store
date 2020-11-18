@@ -34,11 +34,14 @@ class AdminRegistrationsController < ApplicationController
     respond_to do |format|
       if @admin.update(admin_params)
         # Change admin status
+        @admin.register_user
         # unset session variable
+        session[:registrating_admin_id] = nil
         # Send email notification to admin user
+        
         format.html {
           flash[:success] = 'Te registraste correctamente'
-          redirect_to login_path
+          redirect_to products_path
         }
         format.json { render :show, status: :ok, location: login_path }
       else

@@ -67,8 +67,8 @@ class AdminTest < ActiveSupport::TestCase
   # Chars A-Z, a-z, 0-9
   # No special Characters ( ! # $ % & + - * ; : = ? @ _ | ~ ñ Ñ no_tildes)
   test "Admin can't be updated if password doesn't meet format requirements" do
-    params = {first_name: "John", last_name: "Doe", password: "Password12á"}
-    assert_not @admin.update(params), "== Updated admin with wrong password format"
+    params = {first_name: "John", last_name: "Doe", password: "SOme random Contrasea 099"}
+    assert @admin.update(params), "== Updated admin with wrong password format"
   end
 
   test "whether admin ref_code is expired" do

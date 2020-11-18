@@ -4,10 +4,7 @@ class ApplicationRecord < ActiveRecord::Base
   MAX_LOGIN_ATTEMPTS = 3
 
   PASSWORD_FORMAT = /\A
-    (?=.*[0-9]) # Must contain at least one number
-    (?=.*[A-Z]) # Must contain an uppercase character
-    (?=.*[a-z]) # Must contain a lowercase character
-    (?!.*[^A-Za-z0-9]) # No special characters
+    [a-zA-Z\d\s]+\z # No special characters
   /x
 
   def generate_random_code
