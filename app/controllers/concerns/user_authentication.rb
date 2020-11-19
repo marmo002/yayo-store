@@ -1,42 +1,60 @@
 class UserAuthentication
 
-  attr_accessor :admin_registration, :message, :user
+  attr_accessor :user, :message
 
-  def initialize(admin_registration_object)
-    @admin_registration = admin_registration_object
-    @user = Admin.find_by email: admin_registration_object.email
+  def initialize(options)
+    @user = nil
     @message = nil
+    @email = options[:email]
+    @ref_code = options[:ref_code]
+    @password = options[:password]
+    @status_method = options[:status_method]
   end
 
   def authenticate
-    # Check if email exists in Admin Table
-    if user && user.pre_registered?
-      # Check if ref_code is accuarate
-      if user.authenticate_ref_code(@admin_registration.reference_code)
-        # Check if admin.ref_code_expiry is not expired
-        if user.ref_code_still_valid?
-          # return authenticated user
-          return true
-        else
-          # Send user to no authorized page
-          error_message "Codigo ha expirado. Contactar Administrador"
-        end
-      else
+    # check if user exists
+    user = Admin.find_by(email: @email)
+    if user.nil?
+      error_message("Wron email")
+      return false
+    end
+
+    # Check user status
+    unless user.send(@status_method)
+      error_message("Wrong status for #{ @status_method }")
+      return false
+    end
+
+    # Check if ref_code is accuarate
+    if @password
+      unless user.authenticate(@password)
+        # Reduce admin login_attempts -1
+        user.reduce_attempts
+        # Send user no authorized message
+        error_message "Error en email o password. Intentos limitados"
+        return false
+      end
+    else
+      unless user.authenticate_ref_code(@ref_code)
         # Reduce admin login_attempts -1
         user.reduce_attempts
         # Send user no authorized message
         error_message "Error en codigo. Intentos limitados"
+        return false
       end
-    else
-      # Send user no authorized message
-      error_message "Acceso negado. Porfavor contactar administrador"
+    end
+
+    # Check if admin.ref_code_expiry is not expired
+    unless user.ref_code_still_valid?
+      # Send user to no authorized page
+      error_message "Codigo ha expirado. Contactar Administrador"
+      return false
     end
 
   end # End of authenticate method
 
   def error_message(message)
     @message = message
-    return false
   end
 
 end

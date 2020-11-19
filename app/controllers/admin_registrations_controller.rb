@@ -2,6 +2,8 @@ class AdminRegistrationsController < ApplicationController
   before_action :set_admin, only: [:edit, :update]
 
   def new
+    # If current_admin_user, redirect to dashboard
+    # message: "Tu sesion esta abierta"
     @admin_registration = AdminRegistration.new
   end
 
@@ -9,7 +11,12 @@ class AdminRegistrationsController < ApplicationController
     @admin_registration = AdminRegistration.new(admin_registration_params)
 
     if @admin_registration.valid?
-      user_auth = UserAuthentication.new(@admin_registration)
+      options = {
+        email:      @admin_registration.email,
+        ref_code:   @admin_registration.reference_code,
+        status_method: "pre_registered?"
+      }
+      user_auth = UserAuthentication.new( options )
       if user_auth.authenticate
         # session is created: Session[registrating_admin_id] = ID
         session[:registrating_admin_id] = user_auth.user.id
@@ -38,10 +45,10 @@ class AdminRegistrationsController < ApplicationController
         # unset session variable
         session[:registrating_admin_id] = nil
         # Send email notification to admin user
-        
+
         format.html {
-          flash[:success] = 'Te registraste correctamente'
-          redirect_to products_path
+          flash[:success] = 'Registracion completa. Por favor inicia session'
+          redirect_to login_path
         }
         format.json { render :show, status: :ok, location: login_path }
       else

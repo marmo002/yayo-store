@@ -11,7 +11,11 @@ Rails.application.routes.draw do
     get "/authenticate", to: "admin_registrations#new"
     post "/authenticate", to: "admin_registrations#create"
     get "/registration", to: "admin_registrations#edit"
-    post "/registration", to: "admin_registrations#update"
+    patch "/registration", to: "admin_registrations#update"
+
+    get '/login', to: 'admin_sessions#new', as: :login
+    get '/logout', to: 'admin_sessions#destroy', as: :logout
+    resources :admin_sessions, only: [:create]
 
     resources :admins, except: [:show, :destroy]
     resources :types, except: [:show, :destroy]
