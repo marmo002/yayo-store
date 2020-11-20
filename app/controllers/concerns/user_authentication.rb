@@ -12,49 +12,72 @@ class UserAuthentication
   end
 
   def authenticate
+    # Set user
+    set_user
+
     # check if user exists
-    user = Admin.find_by(email: @email)
-    if user.nil?
-      error_message("Wron email")
-      return false
-    end
-
     # Check user status
-    unless user.send(@status_method)
-      error_message("Wrong status for #{ @status_method }")
-      return false
+    # authenticate_user
+    # Check if ref_codeis valid
+    ['user_exists?', 'check_user_status', 'authenticate_user', 'ref_code_expired?'].each do |method|
+      break unless send(method)
     end
 
-    # Check if ref_code is accuarate
-    if @password
-      unless user.authenticate(@password)
-        # Reduce admin login_attempts -1
-        user.reduce_attempts
-        # Send user no authorized message
-        error_message "Error en email o password. Intentos limitados"
-        return false
-      end
-    else
-      unless user.authenticate_ref_code(@ref_code)
-        # Reduce admin login_attempts -1
-        user.reduce_attempts
-        # Send user no authorized message
-        error_message "Error en codigo. Intentos limitados"
-        return false
-      end
-    end
+    @message ? false : true
 
-    # Check if admin.ref_code_expiry is not expired
-    unless user.ref_code_still_valid?
-      # Send user to no authorized page
-      error_message "Codigo ha expirado. Contactar Administrador"
-      return false
-    end
-
-  end # End of authenticate method
+  end # END OF AUTHENTICATION METHOD
 
   def error_message(message)
     @message = message
+    false
+  end
+
+  private
+
+  def set_user
+    if @email.present?
+      @user = Admin.find_by(email: @email)
+    end
+  end
+
+  def user_exists?
+    user.nil? ? error_message("Credenciales proporsionadas no son correctas") : true
+  end
+
+  def check_user_status
+    user.send(@status_method) ? true : error_message("No tienes acceso. Contacta al administrador")
+  end
+
+  # Check if ref_code or password are accuarate
+  def authenticate_user
+    if @password # if options[:password]
+      if user.authenticate(@password)
+        return true
+      else
+        # Reduce admin login_attempts -1
+        user.reduce_attempts
+
+        # Send user no authorized message
+        return error_message("Error en email o password. Intentos limitados")
+      end
+    else # if options[:ref_code]
+      if user.authenticate_ref_code(@ref_code)
+        return true
+      else
+        # Reduce admin login_attempts -1
+        user.reduce_attempts
+
+        # Send user no authorized message
+        return error_message("Error en credenciales. Intentos limitados")
+      end
+    end
+  end
+
+  # If ref_code:
+  # check if ref_code is still valid
+  def ref_code_expired?
+    return if @ref_code.nil?
+    user.ref_code_still_valid? ? true : error_message("Codigo ha expirado. Contactar Administrador")
   end
 
 end

@@ -7,24 +7,22 @@ class AdminSessionsController < ApplicationController
   end
 
   def create
-    admin = Admin.find_by(email: params[:email])
-    # byebug
-    if admin && admin.registered? # Acceso negado. Contacta a tu administrador
-      # Check authentication
-      if admin.authenticate(params[:password])
-        # session[:admin_id] = admin.id
-        flash[:primary] = "Se inicio sesion de manera exitosa!"
 
+    user_auth = UserAuthentication.new( {
+      email:      params[:email],
+      password:   params[:password],
+      status_method: "registered?"
+    } )
+
+    # Check authentication
+    if user_auth.authenticate # Acceso negado. Contacta a tu administrador
+        session[:admin_id] = user_auth.user.id
+        flash[:primary] = "Se inicio sesion exitosamente!"
         redirect_to products_path
-
-      else
-        # flash[:danger] = "Email o contraseña incorrectos."
-        flash[:danger] = "Wrong password."
-        redirect_to login_path
-      end
     else
-      # flash[:danger] = "Email o contraseña incorrectos."
-      flash[:danger] = "Email/status error."
+      flash[:danger] = "Email o contraseña incorrectos."
+      # More detailed message:
+      # flash[:danger] = user_auth.message
       redirect_to login_path
     end
   end

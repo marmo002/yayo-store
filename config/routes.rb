@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     patch "/registration", to: "admin_registrations#update"
 
     get '/login', to: 'admin_sessions#new', as: :login
-    get '/logout', to: 'admin_sessions#destroy', as: :logout
+    delete '/logout', to: 'admin_sessions#destroy', as: :logout
     resources :admin_sessions, only: [:create]
 
     resources :admins, except: [:show, :destroy]
