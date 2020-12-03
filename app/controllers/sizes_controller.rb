@@ -1,4 +1,5 @@
 class SizesController < ApplicationController
+  before_action :require_admin
   before_action :get_size, only: [:show, :edit, :update, :destroy]
 
   layout "admin_layout"

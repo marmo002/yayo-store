@@ -8,7 +8,7 @@
             <h3 class="card-title mb-0">Registrate</h3>
             <p class="mb-5 text-muted">Para para ingresar a la consola de administracion</p>
 
-            <%= form_with( model: @admin, url: registration_path, method: :post, local: true, class: 'mt-4 mb-5') do |form| %>
+            <%= form_with( model: @admin, url: registration_path, method: :patch, local: true, class: 'mt-4 mb-5') do |form| %>
               <%= render "shared/errors", object: @admin %>
 
               <div class="form-group">
@@ -16,7 +16,7 @@
                 <input id="user_type" class="form-control" type="text" placeholder="<%= @admin.admin_type %>" readonly>
               </div>
               <div class="form-group">
-                <label for="user_email" >Email</label>
+                <label for="user_email">E-mail</label>
                 <input id="user_email" class="form-control" type="text" placeholder="<%= @admin.email %>" readonly>
               </div>
 
@@ -33,9 +33,8 @@
               <div class="form-group">
                 <%= form.label "Contraseña", for: :admin_password %>
                 <%= form.password_field :password, class: 'form-control'%>
-                <small id="admin_password_help" class="form-text text-muted">Entre 6 a 8 caracteres</small>
-                <small id="admin_password_help" class="form-text text-muted">Una mayuscula, una minuscula, un numero</small>
-                <small id="admin_password_help" class="form-text text-muted">No caracteres especiales</small>
+                <small id="admin_password_help" class="form-text text-muted">Minimo 6 caracteres</small>
+                <small id="admin_password_help" class="form-text text-muted">No caracteres especiales(ñ, @, &, /, etc)</small>
 
               </div>
               <div class="form-group">
@@ -45,7 +44,7 @@
 
               <div class="form-group row">
                 <div class="col-sm-10">
-                  <button type="submit" class="btn btn-primary">Guardar</button>
+                  <%= form.submit 'Guardar', class: 'btn btn-primary' %>
                 </div>
               </div>
 

@@ -2,6 +2,7 @@
   <div class="row">
     <div class="col-12">
       <h1>List de Productos</h1>
+      <p><%= session[:admin_id] %></p>
       <ul class="nav">
         <li class="nav-item">
           <%= link_to "Crear nuevo", new_product_path, class: "nav-link active" %>
