@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h1>Admins</h1>
+      <ul class="nav">
+        <li class="nav-item">
+          <%= link_to "Crear nuevo", new_admin_path, class: "nav-link active" %>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <!-- TABLE -->
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">email</th>
+            <th scope="col">type</th>
+            <th scope="col">status</th>
+            <th scope="col">Codigo expira en</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @admins.each_with_index do |admin, index| %>
+          <tr>
+            <th scope="row"><%= index + 1 %></th>
+            <td><%= admin.full_name if admin.first_name %></td>
+            <td><%= admin.email %></td>
+            <td><%= admin.admin_type %></td>
+            <td><%= admin.status %></td>
+            <td><%= admin.code_expires_in %></td>
+            <td><%= link_to 'Editar', edit_admin_path(admin), class: 'btn btn-primary btn-sm', role: 'button' %></td>
+          </tr>
+        <% end %>
+      </tbody>
+      </table>
+
+      <!-- TABLE -->
+    </div>
+  </div>
+</div>

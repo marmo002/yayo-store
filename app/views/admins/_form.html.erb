@@ -1,0 +1,20 @@
+
+<%= form_with(model: admin, local: true) do |form| %>
+  <%= render "shared/errors", object: admin %>
+    <div class="row">
+
+      <!-- LEFT side -->
+      <div class="col-12">
+
+        <%= form.label "Email" %> <br>
+        <%= form.text_field :email %>
+        <hr>
+        <%= form.label "Tipo de Administrador" %> <br>
+        <%= form.select :admin_type, Admin.admin_types.keys, prompt: 'Selecciona uno' %>
+
+        <hr>
+        <%= form.submit 'Guardar'%>
+      </div>
+      <!-- LEFT side -->
+    </div>
+<% end %>

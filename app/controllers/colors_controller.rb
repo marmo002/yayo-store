@@ -1,4 +1,5 @@
 class ColorsController < ApplicationController
+  before_action :require_admin
   layout "admin_layout"
   before_action :get_color, only: [:show, :edit, :update, :destroy]
 

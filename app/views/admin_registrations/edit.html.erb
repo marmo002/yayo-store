@@ -1,0 +1,59 @@
+<div id="registration-background">
+  <div class="container">
+    <div class="row full-height align-items-center">
+      <div class="col-12 col-md-8 col-lg-6">
+        <div class="card">
+          <div class="card-body">
+            <%= image_pack_tag 'logo-01.svg', class: 'registration-logo mt-4 mb-5' %>
+            <h3 class="card-title mb-0">Registrate</h3>
+            <p class="mb-5 text-muted">Para para ingresar a la consola de administracion</p>
+
+            <%= form_with( model: @admin, url: registration_path, method: :patch, local: true, class: 'mt-4 mb-5') do |form| %>
+              <%= render "shared/errors", object: @admin %>
+
+              <div class="form-group">
+                <label for="user_type" >Tipo de usuario</label>
+                <input id="user_type" class="form-control" type="text" placeholder="<%= @admin.admin_type %>" readonly>
+              </div>
+              <div class="form-group">
+                <label for="user_email">E-mail</label>
+                <input id="user_email" class="form-control" type="text" placeholder="<%= @admin.email %>" readonly>
+              </div>
+
+              <div class="form-group">
+                <%= form.label "Nombre", for: :admin_first_name %>
+                <%= form.text_field :first_name, class: 'form-control'%>
+              </div>
+
+              <div class="form-group">
+                <%= form.label "Apellido", for: :admin_last_name %>
+                <%= form.text_field :last_name, class: 'form-control'%>
+              </div>
+
+              <div class="form-group">
+                <%= form.label "Contraseña", for: :admin_password %>
+                <%= form.password_field :password, class: 'form-control'%>
+                <small id="admin_password_help" class="form-text text-muted">Minimo 6 caracteres</small>
+                <small id="admin_password_help" class="form-text text-muted">No caracteres especiales(ñ, @, &, /, etc)</small>
+
+              </div>
+              <div class="form-group">
+                <%= form.label "Confirmar Contraseña", for: :admin_password_confirmation %>
+                <%= form.password_field :password_confirmation, class: 'form-control'%>
+              </div>
+
+              <div class="form-group row">
+                <div class="col-sm-10">
+                  <%= form.submit 'Guardar', class: 'btn btn-primary' %>
+                </div>
+              </div>
+
+            <% end # End of form%>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
