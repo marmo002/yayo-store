@@ -1,6 +1,7 @@
 class TypesController < ApplicationController
-  layout "admin_layout"
+  before_action :require_admin
   before_action :get_type, only: [:edit, :update]
+  layout "admin_layout"
 
 
   def index

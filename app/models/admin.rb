@@ -45,6 +45,11 @@ validates :password, confirmation: { message: "Confirmacion no es igual a Contra
     self.save(validate: false)
   end
 
+  def reset_attempts
+    self.login_attempts = 3
+    self.save(validate: false)
+  end
+
   def register_user
     self.status = :registered
     self.save validate: false

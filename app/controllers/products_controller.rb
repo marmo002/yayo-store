@@ -1,4 +1,5 @@
 class ProductsController < ApplicationController
+  before_action :require_admin
   before_action :get_product, only: [:show, :edit, :update, :destroy]
   before_action :set_others, only: [:new, :create, :edit, :update]
   layout "admin_layout"

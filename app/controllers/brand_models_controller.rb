@@ -1,4 +1,5 @@
 class BrandModelsController < ApplicationController
+  before_action :require_admin
   layout "admin_layout"
   before_action :get_model, only: [:show, :edit, :update, :destroy]
   before_action :get_brands, only: [:new, :create, :edit, :update]
@@ -15,7 +16,7 @@ class BrandModelsController < ApplicationController
   def new
     @brand_model = BrandModel.new
   end
-  
+
   def create
     @brand_model = BrandModel.new(brand_model_params)
 

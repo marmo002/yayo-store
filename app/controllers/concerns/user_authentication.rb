@@ -27,12 +27,12 @@ class UserAuthentication
 
   end # END OF AUTHENTICATION METHOD
 
+  private
+
   def error_message(message)
     @message = message
     false
   end
-
-  private
 
   def set_user
     if @email.present?
@@ -52,6 +52,7 @@ class UserAuthentication
   def authenticate_user
     if @password # if options[:password]
       if user.authenticate(@password)
+        user.reset_attempts
         return true
       else
         # Reduce admin login_attempts -1
