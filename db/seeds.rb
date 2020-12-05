@@ -6,6 +6,10 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+if Rails.env.production?
+  
+end
+
 if Rails.env.development?
 
   %w(zapatillas zapatos sandalias polo billeteras gorras pantalones).each { |type|
