@@ -114,9 +114,7 @@ Rails.application.configure do
   config.action_mailer.perform_deliveries = true
   # Defaults to:
   config.action_mailer.default_url_options = {
-    host: 'localhost',
-    port: 3000
-    # protocol: 'http'
+    host: ENV['MAILER_HOST_URL'],
   }
   config.action_mailer.default_options = {from: 'no-reply@yayo.store'}
   config.action_mailer.delivery_method = :smtp
