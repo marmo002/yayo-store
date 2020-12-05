@@ -39,11 +39,34 @@ Rails.application.configure do
   # Tell Action Mailer not to deliver emails to the real world.
   # The :test delivery method accumulates sent emails in the
   # ActionMailer::Base.deliveries array.
-  config.action_mailer.delivery_method = :test
+  # config.action_mailer.delivery_method = :test
 
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
 
   # Raises error for missing translations.
   # config.action_view.raise_on_missing_translations = true
+
+  # ACTION MAILER CONFIG
+  config.action_mailer.perform_deliveries = false
+  # Defaults to:
+  config.action_mailer.default_url_options = {
+    host: 'localhost',
+    port: 3000,
+    # protocol: 'http'
+  }
+  config.action_mailer.default_options = {from: 'test@yayo.store'}
+  config.action_mailer.delivery_method = :test
+
+  # config.action_mailer.smtp_settings = {
+  #   address:              'smtp.gmail.com',
+  #   port:                 587,
+  #   domain:               'yayo.store',
+  #   user_name:            'martin.st8n@gmail.com',
+  #   password:             'kenneth12',
+  #   authentication:       'plain',
+  #   enable_starttls_auto: true 
+  # }
+
+
 end

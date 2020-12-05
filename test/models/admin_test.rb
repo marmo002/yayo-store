@@ -2,8 +2,9 @@ require 'test_helper'
 
 class AdminTest < ActiveSupport::TestCase
   def setup
-    @admin = Admin.create(email: "mail@mail.com", admin_type: :admin)
+    @admin = Admin.new(email: "mail@mail.com", admin_type: :admin)
     @ref_code = @admin.set_ref_code
+    @admin.save validate: false
   end
 
   def tear_down

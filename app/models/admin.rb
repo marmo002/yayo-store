@@ -18,15 +18,14 @@ class Admin < ApplicationRecord
                                 },
                             length: { minimum: 6, message: "Clave minimo de 6 caracteres" },
                             on: :update
-validates :password, confirmation: { message: "Confirmacion no es igual a Contraseña" }, on: :update
+  validates :password, confirmation: { message: "Confirmacion no es igual a Contraseña" }, on: :update
 
   # CALLBACKS
-  before_create :set_ref_code
+  # before_create :set_ref_code
 
   # INSTANCE METHODS
   def set_ref_code
-    # new_ref_code = SecureRandom.base64(24)
-    new_ref_code = "Dcxl6cqc4COBBrZvOVsT8eighDtcRasT"
+    new_ref_code = SecureRandom.base64(28)
     self.ref_code = new_ref_code
     self.ref_code_expiry = DateTime.current + 1.day
 
