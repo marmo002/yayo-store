@@ -58,15 +58,4 @@ Rails.application.configure do
   config.action_mailer.default_options = {from: 'test@yayo.store'}
   config.action_mailer.delivery_method = :test
 
-  # config.action_mailer.smtp_settings = {
-  #   address:              'smtp.gmail.com',
-  #   port:                 587,
-  #   domain:               'yayo.store',
-  #   user_name:            'martin.st8n@gmail.com',
-  #   password:             'kenneth12',
-  #   authentication:       'plain',
-  #   enable_starttls_auto: true 
-  # }
-
-
 end
