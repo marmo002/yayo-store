@@ -72,12 +72,12 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
 
   config.action_mailer.smtp_settings = {
-    address:              'smtp.gmail.com',
+    address:              ENV['server_address'],
     port:                 587,
     domain:               'yayo.store',
     user_name:            ENV['mail_user_name'],
     password:             ENV['mail_password'],
-    authentication:       'plain',
+    authentication:       :login,
     enable_starttls_auto: true 
   }
 

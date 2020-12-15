@@ -1,5 +1,7 @@
 class AdminRegistrationsController < ApplicationController
   before_action :set_admin, only: [:edit, :update]
+  before_action :logged_admin, only: [:new]
+
 
   def new
     # If current_admin_user, redirect to dashboard
