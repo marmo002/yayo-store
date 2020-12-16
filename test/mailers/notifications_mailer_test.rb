@@ -4,7 +4,6 @@ class NotificationsMailerTest < ActionMailer::TestCase
   def setup
     @admin = Admin.create(email: "martin@gmail.com", admin_type: :admin)
     @ref_code = @admin.set_ref_code
-    @admin.save validate: false
   end
 
   def tear_down
