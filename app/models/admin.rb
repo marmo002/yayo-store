@@ -28,8 +28,20 @@ class Admin < ApplicationRecord
     new_ref_code = SecureRandom.base64(28)
     self.ref_code = new_ref_code
     self.ref_code_expiry = DateTime.current + 1.day
-
+    self.save(validate: false)
+    
     new_ref_code
+  end
+
+  def send_ref_code
+    ref_number = set_ref_code
+
+    # send registration email to admin
+    NotificationsMailer.with(
+      reference_number: ref_number,
+      admin_user: self.id
+    ).registration_email.deliver_now
+
   end
 
   def ref_code_still_valid?

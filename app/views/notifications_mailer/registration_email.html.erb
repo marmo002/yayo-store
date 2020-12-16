@@ -3,11 +3,11 @@
 
 <p>Sigue los siguientes pasos para completar tu registro</p>
 <ol>
-  <li>Dirigete a <%= link_to 'registracion', authenticate_url, target: "_blank" %>.</li>
-  <li>Introduce tu cuenta de correo electronico(este email).</li>
-  <li>Introduce el Codigo de Referencia: <b><%= @reference_number %>.</b></li>
+  <li>Dirigete a <%= link_to 'registracion', authenticate_url, target: "_blank" %></li>
+  <li>Introduce tu cuenta de correo electronico(este email)</li>
+  <li>Introduce el Codigo de Referencia: <b><%= @reference_number %></b></li>
   <li>
-    <b>Este codigo sera valido solo hasta <%= @expiry_date %>.</b>
+    <b>Este codigo sera valido solo por las siguientes 24 horas</b>
   </li>
   
 </ol>
