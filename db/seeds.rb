@@ -5,11 +5,6 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-
-if Rails.env.production?
-  
-end
-
 if Rails.env.development?
 
   %w(zapatillas zapatos sandalias polo billeteras gorras pantalones).each { |type|
@@ -34,3 +29,10 @@ if Rails.env.development?
   end
 
 end
+
+
+  # Set super admin
+  admin = Admin.new( email: ENV['SUPER_ADMIN_EMAIL'], admin_type: "super_admin")
+  admin.send_ref_code
+
+

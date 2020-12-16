@@ -16,17 +16,10 @@ class AdminsController < ApplicationController
 
     respond_to do |format|
       if @admin.valid?
-        # create ref num and expiration date
-        ref_number = @admin.set_ref_code
         
-        # save new admin
-        @admin.save
-        
-        # send registration email to admin
-        NotificationsMailer.with(
-          reference_number: ref_number,
-          admin_user: @admin.id
-        ).registration_email.deliver_now
+        # Set ref num and expiration date
+        # and email it to admin user
+        @admin.send_ref_code                        # send_ref_code will use set_ref_code which will save the instance 
 
         format.html {
           flash[:success] = "Se creo nuevo admin existosamente"
