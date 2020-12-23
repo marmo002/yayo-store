@@ -12,12 +12,13 @@ Rails.application.routes.draw do
     post "/authenticate", to: "admin_registrations#create"
     get "/registration", to: "admin_registrations#edit"
     patch "/registration", to: "admin_registrations#update"
-
+    
     get '/login', to: 'admin_sessions#new', as: :login
     delete '/logout', to: 'admin_sessions#destroy', as: :logout
     resources :admin_sessions, only: [:create]
-
+    
     resources :admins, except: [:show, :destroy]
+    post "/code_resend/:id", to: "admins#resend_ref_code", as: :code_resend
     resources :types, except: [:show, :destroy]
     resources :brands, except: [:show]
     resources :brand_models
