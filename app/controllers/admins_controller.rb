@@ -37,6 +37,34 @@ class AdminsController < ApplicationController
     @admin = Admin.find(params[:id])
   end
 
+  def update
+    @admin = Admin.find(params[:id])
+
+    respond_to do |format|
+      if @admin.update(admin_params)
+        format.html {
+          flash[:success] = 'Se actualizo correctamente'
+          redirect_to admins_path
+        }
+        format.json { render :show, status: :ok, location: admins_path }
+      else
+        format.html { render :edit }
+        format.json { render json: @admin.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def resend_ref_code
+    # byebug
+    admin = Admin.find(params[:id])
+    if admin
+      admin.send_ref_code
+      render json: { success: true }
+    else
+      render status: 500
+    end 
+  end
+
   private
 
     def admin_params

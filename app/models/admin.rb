@@ -1,5 +1,5 @@
 class Admin < ApplicationRecord
-
+  attribute :resend_ref_code, :boolean
   has_secure_password validations: false
   has_secure_password :ref_code, validations: false
 
@@ -21,9 +21,15 @@ class Admin < ApplicationRecord
   validates :password, confirmation: { message: "Confirmacion no es igual a Contraseña" }, on: :update
 
   # CALLBACKS
-  # before_create :set_ref_code
+  before_update :ref_code_request
 
   # INSTANCE METHODS
+  def ref_code_request
+    # if attribute is true
+
+    # send new request to admin user
+  end
+
   def set_ref_code
     new_ref_code = SecureRandom.base64(28)
     self.ref_code = new_ref_code
@@ -34,6 +40,7 @@ class Admin < ApplicationRecord
   end
 
   def send_ref_code
+    self.status = :pre_registered
     ref_number = set_ref_code
 
     # send registration email to admin

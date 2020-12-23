@@ -11,7 +11,6 @@
         <hr>
         <%= form.label "Tipo de Administrador" %> <br>
         <%= form.select :admin_type, Admin.admin_types.keys, prompt: 'Selecciona uno' %>
-
         <hr>
         <%= form.submit 'Guardar'%>
       </div>
