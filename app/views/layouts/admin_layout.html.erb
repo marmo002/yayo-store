@@ -68,7 +68,9 @@
           </div>
         </nav>
     </header>
-    <%= render "layouts/flash", flash: flash %>
+    <div id="alerts-container">
+      <%= render "layouts/flash", flash: flash %>
+    </div>
 
     <%= yield %>
 

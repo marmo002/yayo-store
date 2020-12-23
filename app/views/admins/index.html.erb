@@ -21,7 +21,7 @@
             <th scope="col">type</th>
             <th scope="col">status</th>
             <th scope="col">Codigo expira en</th>
-            <th scope="col">Actions</th>
+            <th scope="col"></th>
           </tr>
         </thead>
         <tbody>
@@ -33,7 +33,7 @@
             <td><%= admin.admin_type %></td>
             <td><%= admin.status %></td>
             <td><%= admin.code_expires_in %></td>
-            <td><%= link_to 'Editar', edit_admin_path(admin), class: 'btn btn-primary btn-sm', role: 'button' %></td>
+            <td><%= link_to 'Ver', edit_admin_path(admin), class: 'btn btn-primary btn-sm', role: 'button' %></td>
           </tr>
         <% end %>
       </tbody>
