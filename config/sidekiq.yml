@@ -1,0 +1,11 @@
+:concurrency: 2
+staging:
+  :concurrency: 2
+production:
+  :concurrency: 2
+:queues:
+  - mailers
+  - critical
+  - default
+  - low
+
