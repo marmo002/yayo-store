@@ -47,7 +47,7 @@ class Admin < ApplicationRecord
     NotificationsMailer.with(
       reference_number: ref_number,
       admin_user: self.id
-    ).registration_email.deliver_now
+    ).registration_email.deliver_later
 
   end
 
