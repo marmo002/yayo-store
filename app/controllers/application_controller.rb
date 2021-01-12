@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   end
 
   def logged_admin
-    if current_admin
+    if current_admin && current_admin.registered?
       flash[:warning] = "Ya has iniciado sesion!"
       redirect_to products_path
       return
@@ -17,6 +17,10 @@ class ApplicationController < ActionController::Base
   def require_admin
     if current_admin.nil?
       flash[:warning] = "Porfavor inicia sesion."
+      redirect_to login_path
+    elsif !current_admin.registered?
+      session[:admin_id] = nil
+      flash[:warning] = "Tu estado ha sido reseteado. Revisa tu email o contacta a tu administrador."
       redirect_to login_path
     end
   end
