@@ -18,7 +18,9 @@ class AdminSessionsController < ApplicationController
 
     # Check authentication
     if user_auth.authenticate # Acceso negado. Contacta a tu administrador
+        reset_session
         session[:admin_id] = user_auth.user.id
+        session[:session_created_at] = Time.now
         flash[:primary] = "Se inicio sesion exitosamente!"
         redirect_to products_path
     else
@@ -30,7 +32,7 @@ class AdminSessionsController < ApplicationController
   end
 
   def destroy
-    session[:admin_id] = nil
+    clear_session
     redirect_to login_path
     flash[:primary] = "Has cerrado sesion exitosamente."
   end
