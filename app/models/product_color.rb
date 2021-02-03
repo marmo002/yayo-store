@@ -1,5 +1,5 @@
 class ProductColor < ApplicationRecord
-  belongs_to :product
+  belongs_to :product, touch: true
   belongs_to :color
 
   has_many :color_sizes, dependent: :destroy

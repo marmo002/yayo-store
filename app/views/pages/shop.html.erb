@@ -21,42 +21,23 @@
                   <div class="filter-widget">
                       <h4 class="fw-title">Categories</h4>
                       <ul class="filter-catagories">
-                          <li><a href="#">Men</a></li>
-                          <li><a href="#">Women</a></li>
-                          <li><a href="#">Kids</a></li>
+                      <% @categories.each do |cat| %>
+                          <li><a href="#"><%= cat %></a></li>
+                      <% end %>
                       </ul>
                   </div>
                   <div class="filter-widget">
                       <h4 class="fw-title">Brand</h4>
                       <div class="fw-brand-check">
+                          <% @brands.each do |brand|%>
                           <div class="bc-item">
                               <label for="bc-calvin">
-                                  Calvin Klein
+                                  <%= brand %>
                                   <input type="checkbox" id="bc-calvin">
                                   <span class="checkmark"></span>
                               </label>
                           </div>
-                          <div class="bc-item">
-                              <label for="bc-diesel">
-                                  Diesel
-                                  <input type="checkbox" id="bc-diesel">
-                                  <span class="checkmark"></span>
-                              </label>
-                          </div>
-                          <div class="bc-item">
-                              <label for="bc-polo">
-                                  Polo
-                                  <input type="checkbox" id="bc-polo">
-                                  <span class="checkmark"></span>
-                              </label>
-                          </div>
-                          <div class="bc-item">
-                              <label for="bc-tommy">
-                                  Tommy Hilfiger
-                                  <input type="checkbox" id="bc-tommy">
-                                  <span class="checkmark"></span>
-                              </label>
-                          </div>
+                          <% end %>
                       </div>
                   </div>
                   <div class="filter-widget">
@@ -69,7 +50,7 @@
                               </div>
                           </div>
                           <div class="price-range ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content"
-                              data-min="33" data-max="98">
+                              data-min="20" data-max="500">
                               <div class="ui-slider-range ui-corner-all ui-widget-header"></div>
                               <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span>
                               <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span>
@@ -77,6 +58,7 @@
                       </div>
                       <a href="#" class="filter-btn">Filter</a>
                   </div>
+                <!--
                   <div class="filter-widget">
                       <h4 class="fw-title">Color</h4>
                       <div class="fw-color-choose">
@@ -106,6 +88,8 @@
                           </div>
                       </div>
                   </div>
+                -->
+                <!--
                   <div class="filter-widget">
                       <h4 class="fw-title">Size</h4>
                       <div class="fw-size-choose">
@@ -127,6 +111,8 @@
                           </div>
                       </div>
                   </div>
+                  -->
+                <!--
                   <div class="filter-widget">
                       <h4 class="fw-title">Tags</h4>
                       <div class="fw-tags">
@@ -139,6 +125,7 @@
                           <a href="#">Backpack</a>
                       </div>
                   </div>
+                -->
               </div>
               <div class="col-lg-9 order-1 order-lg-2">
                   <div class="product-show-option">
@@ -160,239 +147,43 @@
                   </div>
                   <div class="product-list">
                       <div class="row">
-                          <div class="col-lg-4 col-sm-6">
+                        <% @products.each do |product|%>
+                           <div class="col-lg-4 col-sm-6">
                               <div class="product-item">
                                   <div class="pi-pic">
-                                      <%= image_pack_tag 'products/product-1.jpg' %>
-                                      <div class="sale pp-sale">Sale</div>
-                                      <div class="icon">
-                                          <i class="icon_heart_alt"></i>
-                                      </div>
-                                      <ul>
-                                          <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                          <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                          <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                                      </ul>
-                                  </div>
-                                  <div class="pi-text">
-                                      <div class="catagory-name">Towel</div>
-                                      <a href="#">
-                                          <h5>Pure Pineapple</h5>
-                                      </a>
-                                      <div class="product-price">
-                                          $14.00
-                                          <span>$35.00</span>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                          <div class="col-lg-4 col-sm-6">
-                              <div class="product-item">
-                                  <div class="pi-pic">
-                                      <%= image_pack_tag 'products/product-2.jpg' %>
+                                    <% if product.blob %>
+                                        <%= image_tag( rails_blob_url ActiveStorage::Blob.find(product.blob) ) %>
+                                    <% else %>
+                                        <%= image_pack_tag 'ImagePlaceholder.jpg' %>
+                                    <% end %>
 
-                                      <div class="icon">
-                                          <i class="icon_heart_alt"></i>
-                                      </div>
-                                      <ul>
-                                          <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                          <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                          <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                                      </ul>
-                                  </div>
-                                  <div class="pi-text">
-                                      <div class="catagory-name">Coat</div>
-                                      <a href="#">
-                                          <h5>Guangzhou sweater</h5>
-                                      </a>
-                                      <div class="product-price">
-                                          $13.00
-                                          <span>$35.00</span>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                          <div class="col-lg-4 col-sm-6">
-                              <div class="product-item">
-                                  <div class="pi-pic">
-                                      <%= image_pack_tag 'products/product-3.jpg' %>
-                                      <div class="icon">
-                                          <i class="icon_heart_alt"></i>
-                                      </div>
-                                      <ul>
-                                          <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                          <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                          <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                                      </ul>
-                                  </div>
-                                  <div class="pi-text">
-                                      <div class="catagory-name">Shoes</div>
-                                      <a href="#">
-                                          <h5>Guangzhou sweater</h5>
-                                      </a>
-                                      <div class="product-price">
-                                          $34.00
-                                          <span>$35.00</span>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                          <div class="col-lg-4 col-sm-6">
-                              <div class="product-item">
-                                  <div class="pi-pic">
-                                      <%= image_pack_tag 'products/product-4.jpg' %>
-                                      <div class="icon">
-                                          <i class="icon_heart_alt"></i>
-                                      </div>
-                                      <ul>
-                                          <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                          <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                          <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                                      </ul>
-                                  </div>
-                                  <div class="pi-text">
-                                      <div class="catagory-name">Coat</div>
-                                      <a href="#">
-                                          <h5>Microfiber Wool Scarf</h5>
-                                      </a>
-                                      <div class="product-price">
-                                          $64.00
-                                          <span>$35.00</span>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                          <div class="col-lg-4 col-sm-6">
-                              <div class="product-item">
-                                  <div class="pi-pic">
-                                      <!-- <img src="img/products/product-5.jpg" alt=""> -->
-                                      <%= image_pack_tag 'products/product-5.jpg' %>
-                                      <div class="icon">
-                                          <i class="icon_heart_alt"></i>
-                                      </div>
-                                      <ul>
-                                          <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                          <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                          <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                                      </ul>
-                                  </div>
-                                  <div class="pi-text">
-                                      <div class="catagory-name">Shoes</div>
-                                      <a href="#">
-                                          <h5>Men's Painted Hat</h5>
-                                      </a>
-                                      <div class="product-price">
-                                          $44.00
-                                          <span>$35.00</span>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                          <div class="col-lg-4 col-sm-6">
-                              <div class="product-item">
-                                  <div class="pi-pic">
-                                      <!-- <img src="img/products/product-6.jpg" alt=""> -->
-                                      <%= image_pack_tag 'products/product-6.jpg' %>
-                                      <div class="icon">
-                                          <i class="icon_heart_alt"></i>
-                                      </div>
-                                      <ul>
-                                          <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                          <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                          <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                                      </ul>
-                                  </div>
-                                  <div class="pi-text">
-                                      <div class="catagory-name">Shoes</div>
-                                      <a href="#">
-                                          <h5>Converse Shoes</h5>
-                                      </a>
-                                      <div class="product-price">
-                                          $34.00
-                                          <span>$35.00</span>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                          <div class="col-lg-4 col-sm-6">
-                              <div class="product-item">
-                                  <div class="pi-pic">
-                                      <!-- <img src="img/products/product-7.jpg" alt=""> -->
-                                      <%= image_pack_tag 'products/product-7.jpg' %>
+                                      <% if product.sale_price %>
                                       <div class="sale pp-sale">Sale</div>
+                                      <% end %>
                                       <div class="icon">
                                           <i class="icon_heart_alt"></i>
                                       </div>
                                       <ul>
-                                          <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
+                                          <!-- <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li> -->
                                           <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                          <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
+                                          <!-- <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>-->
                                       </ul>
                                   </div>
                                   <div class="pi-text">
-                                      <div class="catagory-name">Towel</div>
+                                      <div class="catagory-name"><%= product.category %></div>
                                       <a href="#">
-                                          <h5>Pure Pineapple</h5>
+                                          <h5><%= product_title(product) %></h5>
                                       </a>
                                       <div class="product-price">
-                                          $64.00
-                                          <span>$35.00</span>
+                                          <%= number_to_soles(product.sale_price ? product.sale_price : product.price) %>
+                                          <span>
+                                            <%= number_to_soles(product.sale_price ? product.price : nil) %>
+                                          </span>
                                       </div>
                                   </div>
                               </div>
                           </div>
-                          <div class="col-lg-4 col-sm-6">
-                              <div class="product-item">
-                                  <div class="pi-pic">
-                                      <!-- <img src="img/products/product-8.jpg" alt=""> -->
-                                      <%= image_pack_tag 'products/product-8.jpg' %>
-                                      <div class="icon">
-                                          <i class="icon_heart_alt"></i>
-                                      </div>
-                                      <ul>
-                                          <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                          <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                          <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                                      </ul>
-                                  </div>
-                                  <div class="pi-text">
-                                      <div class="catagory-name">Coat</div>
-                                      <a href="#">
-                                          <h5>2 Layer Windbreaker</h5>
-                                      </a>
-                                      <div class="product-price">
-                                          $44.00
-                                          <span>$35.00</span>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                          <div class="col-lg-4 col-sm-6">
-                              <div class="product-item">
-                                  <div class="pi-pic">
-                                    <!-- <img src="img/products/product-9.jpg" alt=""> -->
-                                      <%= image_pack_tag 'products/product-9.jpg' %>
-                                      <div class="icon">
-                                          <i class="icon_heart_alt"></i>
-                                      </div>
-                                      <ul>
-                                          <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                          <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                          <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                                      </ul>
-                                  </div>
-                                  <div class="pi-text">
-                                      <div class="catagory-name">Shoes</div>
-                                      <a href="#">
-                                          <h5>Converse Shoes</h5>
-                                      </a>
-                                      <div class="product-price">
-                                          $34.00
-                                          <span>$35.00</span>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
+                        <% end %>
                       </div>
                   </div>
                   <div class="loading-more">
