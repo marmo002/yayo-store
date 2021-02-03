@@ -29,34 +29,15 @@
                   <div class="filter-widget">
                       <h4 class="fw-title">Brand</h4>
                       <div class="fw-brand-check">
+                          <% @brands.each do |brand|%>
                           <div class="bc-item">
                               <label for="bc-calvin">
-                                  Calvin Klein
+                                  <%= brand %>
                                   <input type="checkbox" id="bc-calvin">
                                   <span class="checkmark"></span>
                               </label>
                           </div>
-                          <div class="bc-item">
-                              <label for="bc-diesel">
-                                  Diesel
-                                  <input type="checkbox" id="bc-diesel">
-                                  <span class="checkmark"></span>
-                              </label>
-                          </div>
-                          <div class="bc-item">
-                              <label for="bc-polo">
-                                  Polo
-                                  <input type="checkbox" id="bc-polo">
-                                  <span class="checkmark"></span>
-                              </label>
-                          </div>
-                          <div class="bc-item">
-                              <label for="bc-tommy">
-                                  Tommy Hilfiger
-                                  <input type="checkbox" id="bc-tommy">
-                                  <span class="checkmark"></span>
-                              </label>
-                          </div>
+                          <% end %>
                       </div>
                   </div>
                   <div class="filter-widget">
@@ -69,7 +50,7 @@
                               </div>
                           </div>
                           <div class="price-range ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content"
-                              data-min="33" data-max="98">
+                              data-min="20" data-max="500">
                               <div class="ui-slider-range ui-corner-all ui-widget-header"></div>
                               <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span>
                               <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span>
@@ -77,6 +58,7 @@
                       </div>
                       <a href="#" class="filter-btn">Filter</a>
                   </div>
+                <!--
                   <div class="filter-widget">
                       <h4 class="fw-title">Color</h4>
                       <div class="fw-color-choose">
@@ -106,6 +88,8 @@
                           </div>
                       </div>
                   </div>
+                -->
+                <!--
                   <div class="filter-widget">
                       <h4 class="fw-title">Size</h4>
                       <div class="fw-size-choose">
@@ -127,6 +111,8 @@
                           </div>
                       </div>
                   </div>
+                  -->
+                <!--
                   <div class="filter-widget">
                       <h4 class="fw-title">Tags</h4>
                       <div class="fw-tags">
@@ -139,6 +125,7 @@
                           <a href="#">Backpack</a>
                       </div>
                   </div>
+                -->
               </div>
               <div class="col-lg-9 order-1 order-lg-2">
                   <div class="product-show-option">
@@ -164,7 +151,12 @@
                            <div class="col-lg-4 col-sm-6">
                               <div class="product-item">
                                   <div class="pi-pic">
-                                      <%= image_pack_tag 'products/product-1.jpg' %>
+                                    <% if product.blob %>
+                                        <%= image_tag( rails_blob_url ActiveStorage::Blob.find(product.blob) ) %>
+                                    <% else %>
+                                        <%= image_pack_tag 'ImagePlaceholder.jpg' %>
+                                    <% end %>
+
                                       <% if product.sale_price %>
                                       <div class="sale pp-sale">Sale</div>
                                       <% end %>
